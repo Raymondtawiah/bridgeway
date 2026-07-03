@@ -3,17 +3,18 @@ import { Globe, HeartPulse, Cpu, Compass, BookOpen, ChevronRight } from 'lucide-
 import MainNavbar from '@/components/main-navbar';
 import MainFooter from '@/components/main-footer';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { ScrollSection } from '@/hooks/use-in-view';
 
 export default function ExploreProgramsPage() {
   const { t } = useLanguage();
 
   const navLinks = [
-    { label: 'Home', href: '#/', i18nKey: 'nav.home' },
-    { label: 'About Us', href: '#about', i18nKey: 'nav.aboutUs' },
+    { label: 'Home', href: '#', i18nKey: 'nav.home' },
+    { label: 'About Us', href: '#', i18nKey: 'nav.aboutUs' },
     { label: 'Programs', href: '#explore', active: true, i18nKey: 'nav.programs' },
-    { label: 'Why Ghana', href: '#why-ghana', i18nKey: 'nav.whyGhana' },
-    { label: 'Application', href: '#revenue', i18nKey: 'nav.application' },
-    { label: 'Contact / FAQ', href: '#services', i18nKey: 'nav.contactFaq' },
+    { label: 'Why Ghana', href: '#', i18nKey: 'nav.whyGhana' },
+    { label: 'Application', href: '#', i18nKey: 'nav.application' },
+    { label: 'Contact / FAQ', href: '#', i18nKey: 'nav.contactFaq' },
   ];
 
   const medicalTracks = t('explore.medicalTracks') as string[];
@@ -27,7 +28,8 @@ export default function ExploreProgramsPage() {
       />
 
       {/* --- PATHWAY DIRECTORY MAIN SECTION --- */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ScrollSection>
+        <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase block mb-2">{t('explore.kicker')}</span>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">{t('explore.title')}</h1>
@@ -117,6 +119,7 @@ export default function ExploreProgramsPage() {
           </button>
         </div>
       </section>
+      </ScrollSection>
 
       <MainFooter />
 

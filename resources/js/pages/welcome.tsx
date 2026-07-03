@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   Award,
   Building,
@@ -18,8 +18,70 @@ import MainNavbar from '@/components/main-navbar';
 import MainFooter from '@/components/main-footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+/* ────────────────────────────────────────────────────────────────
+   Reveal: fades + slides a section/element up into place the first
+   time it enters the viewport. `delay` (ms) lets a group of siblings
+   stagger instead of arriving all at once.
+   ──────────────────────────────────────────────────────────────── */
+type RevealProps = {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  as?: keyof JSX.IntrinsicElements;
+};
+
+function Reveal({ children, className = '', delay = 0, as: Tag = 'div' }: RevealProps) {
+  const ref = useRef<HTMLElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    // Respect reduced-motion preference: show immediately, no animation.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <Tag
+      ref={ref as any}
+      className={`transition-all duration-700 ease-out ${
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      } ${className}`}
+      style={{ transitionDelay: visible ? `${delay}ms` : '0ms' }}
+    >
+      {children}
+    </Tag>
+  );
+}
+
 export default function WelcomePage() {
   const { t } = useLanguage();
+
+  // Simple mount-in for the hero, since it's visible on load and never
+  // needs a scroll trigger.
+  const [heroIn, setHeroIn] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setHeroIn(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   const objectives = [
     t('objectives.items.0'),
@@ -40,7 +102,7 @@ export default function WelcomePage() {
   ];
 
   const navLinks = [
-    { label: 'Home', href: '#/', active: true, i18nKey: 'nav.home' },
+    { label: 'Home', href: '#', active: true, i18nKey: 'nav.home' },
     { label: 'About Us', href: '#about', i18nKey: 'nav.aboutUs' },
     { label: 'Programs', href: '#explore', i18nKey: 'nav.programs' },
     { label: 'Why Ghana', href: '#why-ghana', i18nKey: 'nav.whyGhana' },
@@ -57,16 +119,20 @@ export default function WelcomePage() {
 
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800 selection:bg-emerald-200">
-      
+
       <MainNavbar
         navLinks={navLinks}
         ctaLabel={t('nav.applyNow')}
       />
 
       {/* --- HERO SECTION --- */}
-      <section className="bg-gradient-to-br from-emerald-900 via-stone-900 to-amber-950 text-white py-24 lg:py-32 relative">
+      <section className="bg-gradient-to-br from-emerald-900 via-stone-900 to-amber-950 text-white py-24 lg:py-32 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7">
+          <div
+            className={`lg:col-span-7 transition-all duration-700 ease-out ${
+              heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
             <span className="inline-block bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6">
               {t('hero.badge')}
             </span>
@@ -77,17 +143,22 @@ export default function WelcomePage() {
               {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-8 py-4 rounded-xl transition-all shadow-lg">
+              <button className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:-translate-y-0.5">
                 {t('hero.ctaApply')}
               </button>
-              <a href="#explore" className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold px-8 py-4 rounded-xl transition-all">
+              <a href="#explore" className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5">
                 {t('hero.ctaDiscover')}
               </a>
             </div>
           </div>
 
           {/* Side Context Widget */}
-          <div className="lg:col-span-5 bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-sm">
+          <div
+            className={`lg:col-span-5 bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-sm transition-all duration-700 ease-out ${
+              heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+            style={{ transitionDelay: heroIn ? '150ms' : '0ms' }}
+          >
             <span className="text-xs uppercase tracking-widest font-mono text-amber-400 block mb-4">// {t('heroWidget.conceptLabel')}</span>
             <p className="text-stone-300 text-base leading-relaxed mb-6">
               {t('heroWidget.conceptText')}
@@ -103,18 +174,18 @@ export default function WelcomePage() {
       {/* --- ABOUT US / BUSINESS CONCEPT --- */}
       <section id="about" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5">
+          <Reveal className="lg:col-span-5">
             <h2 className="text-xs font-bold text-emerald-700 tracking-widest uppercase mb-3">{t('about.kicker')}</h2>
             <p className="text-3xl font-bold text-stone-900 tracking-tight mb-6">
               {t('about.headline')}
             </p>
             <div className="h-1 w-20 bg-amber-500 rounded"></div>
-          </div>
-          <div className="lg:col-span-7 space-y-6 text-stone-600 leading-relaxed text-lg">
+          </Reveal>
+          <Reveal className="lg:col-span-7 space-y-6 text-stone-600 leading-relaxed text-lg" delay={120}>
             <p>{t('about.p1')}</p>
             <p>{t('about.p2')}</p>
             <p>{t('about.p3')}</p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -122,21 +193,21 @@ export default function WelcomePage() {
 
       {/* --- WHY GHANA / COMPANY OVERVIEW --- */}
       <section id="why-ghana" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <Reveal className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-xs font-bold text-emerald-700 tracking-widest uppercase mb-3">{t('whyGhana.kicker')}</h2>
           <p className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">{t('whyGhana.headline')}</p>
           <p className="mt-4 text-stone-600">{t('whyGhana.subhead')}</p>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="space-y-6 text-stone-600 leading-relaxed text-base">
+          <Reveal className="space-y-6 text-stone-600 leading-relaxed text-base" delay={80}>
             <p>{t('whyGhana.p1')}</p>
             <p>{t('whyGhana.p2')}</p>
             <p className="bg-stone-100 p-6 rounded-2xl border-l-4 border-emerald-700 text-stone-700 font-medium text-base">
               {t('whyGhana.highlight')}
             </p>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={200}>
             <h3 className="text-lg font-bold text-stone-900 mb-4">{t('whyGhana.revenueTitle')}</h3>
             <p className="text-stone-600 text-sm leading-relaxed mb-4">
               {t('whyGhana.revenueIntro')}
@@ -149,7 +220,7 @@ export default function WelcomePage() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -158,7 +229,7 @@ export default function WelcomePage() {
       {/* --- VISION & MISSION --- */}
       <section className="py-20 bg-stone-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm border border-stone-200/60">
+          <Reveal className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm border border-stone-200/60">
             <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6">
               <span className="text-2xl">👁️‍🗨️</span>
             </div>
@@ -166,9 +237,9 @@ export default function WelcomePage() {
             <p className="text-stone-600 leading-relaxed">
               {t('visionMission.visionText')}
             </p>
-          </div>
+          </Reveal>
 
-          <div className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm border border-stone-200/60">
+          <Reveal className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm border border-stone-200/60" delay={140}>
             <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center mb-6">
               <span className="text-2xl">🎯</span>
             </div>
@@ -176,26 +247,30 @@ export default function WelcomePage() {
             <p className="text-stone-600 leading-relaxed">
               {t('visionMission.missionText')}
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* --- CORE OBJECTIVES --- */}
       <section id="objectives" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-4">
+          <Reveal className="lg:col-span-4">
             <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase mb-3 block">{t('objectives.sectionKicker')}</span>
             <h3 className="text-3xl font-bold tracking-tight text-stone-900 mb-4">{t('objectives.sectionTitle')}</h3>
             <p className="text-stone-600 text-sm leading-relaxed">
               {t('objectives.sectionIntro')}
             </p>
-          </div>
+          </Reveal>
           <div className="lg:col-span-8 space-y-4">
             {objectives.map((objective, idx) => (
-              <div key={idx} className="flex items-start bg-stone-50 border border-stone-200 p-5 rounded-2xl">
+              <Reveal
+                key={idx}
+                delay={idx * 90}
+                className="flex items-start bg-stone-50 border border-stone-200 p-5 rounded-2xl"
+              >
                 <CheckCircle className="w-6 h-6 text-emerald-600 shrink-0 mr-4 mt-0.5" />
                 <p className="text-stone-800 font-medium text-base sm:text-lg">{objective}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -204,23 +279,27 @@ export default function WelcomePage() {
       {/* --- PRODUCTS AND SERVICES --- */}
       <section id="services" className="py-20 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <Reveal className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-xs font-bold text-emerald-700 tracking-widest uppercase mb-3">{t('services.kicker')}</h2>
             <p className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">
               {t('services.title')}
             </p>
             <p className="mt-4 text-stone-600">{t('services.subtitle')}</p>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-2xl border border-stone-200 hover:border-emerald-500/40 hover:shadow-xl hover:shadow-stone-200/50 transition-all group">
+              <Reveal
+                key={idx}
+                delay={(idx % 3) * 100}
+                className="bg-white p-6 rounded-2xl border border-stone-200 hover:border-emerald-500/40 hover:shadow-xl hover:shadow-stone-200/50 transition-all group hover:-translate-y-1"
+              >
                 <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-emerald-700 group-hover:text-white transition-all">
                   {React.cloneElement(service.icon, { className: "w-6 h-6 text-emerald-700 group-hover:text-white transition-colors" })}
                 </div>
                 <h4 className="text-lg font-bold text-stone-900 mb-2">{service.title}</h4>
                 <p className="text-sm text-stone-500 leading-relaxed">{service.desc}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -228,7 +307,7 @@ export default function WelcomePage() {
 
       {/* --- WHY CHOOSE US / PERSPECTIVE ADVANTAGE --- */}
       <section className="bg-stone-900 text-white py-20">
-        <div className="max-w-5xl mx-auto px-4 text-center">
+        <Reveal className="max-w-5xl mx-auto px-4 text-center" as="div">
           <h2 className="text-xs font-bold text-amber-400 tracking-widest uppercase mb-3">{t('cta.beforeTitle')}</h2>
           <p className="text-2xl sm:text-3xl font-bold mb-6 text-white">{t('cta.heading')}</p>
           <p className="text-stone-400 max-w-3xl mx-auto mb-10 leading-relaxed text-base sm:text-lg">
@@ -237,7 +316,7 @@ export default function WelcomePage() {
           <a href="#explore" className="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
             {t('cta.button')} <ArrowRight className="w-5 h-5 ml-2" />
           </a>
-        </div>
+        </Reveal>
       </section>
 
       <MainFooter />

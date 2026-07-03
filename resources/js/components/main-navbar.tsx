@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Globe, Menu, X, ChevronDown } from 'lucide-react';
+import { Link } from '@inertiajs/react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 type NavLink = {
@@ -130,18 +131,36 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
 
       {isMenuOpen && (
         <div className="md:hidden bg-white border-b border-stone-200 px-4 pt-2 pb-6 flex flex-col space-y-3 font-medium">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setIsMenuOpen(false)}
-              className={`py-2 border-b border-stone-100 ${
-                link.active ? 'text-emerald-700 font-bold' : 'text-stone-700'
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isHash = link.href.includes('#');
+            if (isHash) {
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`py-2 border-b border-stone-100 ${
+                    link.active ? 'text-emerald-700 font-bold' : 'text-stone-700'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            }
+
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                className={`py-2 border-b border-stone-100 ${
+                  link.active ? 'text-emerald-700 font-bold' : 'text-stone-700'
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           {ctaLabel && (
             <button
               onClick={() => {
@@ -162,12 +181,16 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
 function NavLinkItem({ link, t, activePage }: { link: NavLink; t: (key: string, fallback?: string) => string; activePage?: string }) {
   const [isHovered, setIsHovered] = useState(false);
   const isActive = link.active || (activePage && link.href.includes(activePage));
-
   const translatedLabel = link.i18nKey ? t(link.i18nKey, link.label) : link.label;
+  const href = link.href.startsWith('#') ? link.href : `#${link.href}`;
 
   return (
     <a
-      href={link.href}
+      href={href}
+      onClick={(e) => {
+        e.preventDefault();
+        window.location.hash = href;
+      }}
       className={`relative px-3 py-2 transition-colors ${
         isActive ? 'text-emerald-700' : 'text-stone-600 hover:text-stone-900'
       }`}
@@ -177,9 +200,7 @@ function NavLinkItem({ link, t, activePage }: { link: NavLink; t: (key: string, 
       <span className="relative z-10">{translatedLabel}</span>
       <span
         className="absolute bottom-0 left-0 h-0.5 bg-emerald-700 transition-all duration-300 ease-out"
-        style={{
-          width: isHovered || isActive ? '100%' : '0%',
-        }}
+        style={{ width: isHovered || isActive ? '100%' : '0%' }}
       />
     </a>
   );
