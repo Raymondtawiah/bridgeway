@@ -1,0 +1,174 @@
+{
+  "brand": "BRIDGEWAY",
+  "brandSuffix": "LLC",
+  "nav": {
+    "home": "Home",
+    "aboutUs": "About Us",
+    "programs": "Programs",
+    "whyGhana": "Why Ghana",
+    "application": "Application",
+    "contactFaq": "Contact / FAQ",
+    "applyNow": "Apply Now"
+  },
+  "hero": {
+    "badge": "Bridgeway International Exchange Hub",
+    "title": "International internships & exchange programs in Ghana",
+    "subtitle": "Certified medical, technical, and social internships with dynamic personal support on the ground in Ghana. Connect professional development with safe, global work frameworks.",
+    "ctaApply": "Apply now",
+    "ctaDiscover": "Discover programs"
+  },
+  "heroWidget": {
+    "conceptLabel": "// Business Concept",
+    "conceptText": "BRIDGEWAY LLC is a dedicated international exchange and cultural immersion company connecting individuals, institutions, and professionals with curated development options across Ghana.",
+    "ecoTarget": "Ecosystem Target:",
+    "ecoValue": "Accra, Ghana Hub",
+    "focusPrimary": "Primary Focus:",
+    "focusValue": "Skills Transfer & Growth"
+  },
+  "about": {
+    "kicker": "About Us",
+    "headline": "BRIDGEWAY LLC",
+    "p1": "BRIDGEWAY LLC is a profit-oriented international exchange and cultural immersion company dedicated to connecting individuals, institutions, organizations, and professionals from around the world with meaningful exchange opportunities in Ghana.",
+    "p2": "Through carefully designed programs in education, healthcare, sports, agriculture, tourism, information technology, entrepreneurship, and community development, XCHANGERS creates transformative experiences that foster global collaboration, cultural understanding, skills transfer, and economic growth.",
+    "p3": "The company serves as a bridge between Ghana and the international community by facilitating internships, volunteer placements, student exchanges, professional attachments, cultural immersion programs, study tours, and specialized industry exchange programs."
+  },
+  "whyGhana": {
+    "kicker": "Why Ghana",
+    "headline": "Company Overview",
+    "subhead": "A vibrant hub for international exchange and professional growth.",
+    "p1": "The world is increasingly interconnected, creating a growing demand for international experiences, cultural exchange, professional exposure, and global networking opportunities.",
+    "p2": "Ghana, known for its political stability, rich cultural heritage, hospitable people, educational institutions, growing technology ecosystem, and thriving agricultural sector, presents a unique destination for exchange programs.",
+    "highlight": "BRIDGEWAY LLC seeks to capitalize on this opportunity by positioning itself as a one-stop international exchange hub that provides comprehensive exchange experiences for individuals and organizations worldwide.",
+    "revenueTitle": "Revenue Model",
+    "revenueIntro": "BRIDGEWAY LLC will operate through a service-based model generating income from:",
+    "revenueItems": [
+      "Program participation fees",
+      "Placement and coordination fees",
+      "Accommodation arrangements",
+      "Airport pickup and transportation",
+      "Visa assistance services",
+      "Tour and excursion packages",
+      "Institutional partnership agreements",
+      "Corporate sponsorships",
+      "Consultancy services",
+      "Cultural immersion programs"
+    ]
+  },
+  "visionMission": {
+    "visionTitle": "Our Vision",
+    "visionText": "To become Africa's leading international exchange and cultural immersion organization, connecting people, ideas, and opportunities across borders for sustainable development and global impact.",
+    "missionTitle": "Our Mission",
+    "missionText": "To provide high-quality, safe, and impactful exchange experiences that promote cultural understanding, professional development, innovation, and international collaboration while contributing to Ghana's socio-economic growth."
+  },
+  "objectives": {
+    "sectionKicker": "Strategic Framework",
+    "sectionTitle": "Our Core Objectives",
+    "sectionIntro": "Concrete milestones focused on quality assurance, structural value alignment, and strategic partnerships.",
+    "items": [
+      "Facilitate international exchange programs across multiple sectors.",
+      "Promote Ghana as a preferred destination for educational and professional exchanges.",
+      "Generate sustainable revenue through premium exchange services.",
+      "Foster international partnerships and collaborations.",
+      "Support local institutions through global exposure and knowledge transfer."
+    ]
+  },
+  "services": {
+    "kicker": "Products and Services",
+    "title": "Specialized Industry Exchange Programs",
+    "subtitle": "Tailored, multi-sector paths mapped out for professionals, students, and organizations worldwide.",
+    "items": [
+      {
+        "title": "Educational Exchange Programs",
+        "desc": "Connecting students and academic institutions for global learning and academic credit transfer."
+      },
+      {
+        "title": "Healthcare Exchange Programs",
+        "desc": "Medical placements, clinical rotations, and knowledge transfer in certified regional hospitals."
+      },
+      {
+        "title": "Agricultural Exchange Programs",
+        "desc": "Sustainable farming practices, agribusiness collaboration, and rural development initiatives."
+      },
+      {
+        "title": "Sports Exchange Programs",
+        "desc": "Athletic development, scouting, cross-cultural tournaments, and sports management exchanges."
+      },
+      {
+        "title": "Tourism and Cultural Exchange",
+        "desc": "Curated cultural immersion, heritage tours, and authentic local experiences across Ghana."
+      },
+      {
+        "title": "Information Technology Exchange",
+        "desc": "Tech ecosystem collaboration, coding bootcamps, digital innovation, and software development placements."
+      },
+      {
+        "title": "Corporate and Professional Exchange",
+        "desc": "Professional attachments, internships, executive networking, and corporate partnership programs."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Why Choose Us",
+    "beforeTitle": "Your Strategic Edge",
+    "heading": "Connecting local knowledge with international practice",
+    "text": "Bridgeway LLC connects professional development with real international work experience in a structured and safe framework. Every single pathway integrates practical professional learning with profound intercultural exposure.",
+    "button": "Explore Programs"
+  },
+  "whyChoose": {
+    "sectionTitle": "Why Choose Our Placements?",
+    "sectionSubtitle": "We replace travel uncertainty with verified institutional infrastructure.",
+    "items": [
+      {
+        "title": "Certified Internships",
+        "desc": "Fully structured placements that map accurately to formal educational and workplace criteria."
+      },
+      {
+        "title": "Institutional Network",
+        "desc": "Direct baseline partnerships with key regional hospitals, schools, and corporate bodies."
+      },
+      {
+        "title": "On-Site Support",
+        "desc": "Dedicated personnel directly deployed on-site to assist you through every stage of immersion."
+      },
+      {
+        "title": "Safe & Structured",
+        "desc": "A tightly managed operational model built entirely around participant safety and comfort."
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "All rights reserved. Connecting World Exchange Ecosystems."
+  },
+  "explore": {
+    "kicker": "Curriculum Directory",
+    "title": "Find your matching program",
+    "subtitle": "Our programs combine high-level practical work experience with international learning and intentional personal development.",
+    "medicalTitle": "Medical Internships",
+    "medicalDesc": "Structured, closely supervised, and fully evaluated practical placements for clinical and healthcare track students inside certified regional hospitals in Ghana.",
+    "medicalTracksLabel": "Available Operational Tracks",
+    "medicalTracks": [
+      "Nursing Internship",
+      "Clinical Rotation / Famulatur",
+      "Final Year Internship / PJ"
+    ],
+    "medicalFocus": "Focus Priorities: Recognition, Practice, Exposure to Global Health Dynamics.",
+    "techTitle": "Technical Internships",
+    "techDesc": "Practical placements tailored for university students and technical professionals coming from diverse multi-sector fields.",
+    "techFieldsLabel": "Core Specialty Fields",
+    "techFields": [
+      "Nursing & Public Health",
+      "Social Work",
+      "Education / Pedagogy",
+      "Business & Admin"
+    ],
+    "techFocus": "Focus Priorities: Skills Transfer, Organizational Attachment, Systems Analysis.",
+    "volunteerTitle": "Volunteer Programs",
+    "volunteerDesc": "Active deployment and personal engagement in specialized localized social development projects with direct insight into local civil structures.",
+    "interculturalTitle": "Intercultural Exchange",
+    "interculturalDesc": "Experience, learn, and grow through deliberate community integration, language familiarity, and deep localized mutual perspective building.",
+    "ctaTitle": "Ready to find your match?",
+    "ctaText": "Connect directly with a specialist to verify course credits alignment, application windows, and upcoming institutional cohorts.",
+    "ctaButton": "Request Consultation Now",
+    "footerSuffix": "Program Framework Ecosystem."
+  }
+}
