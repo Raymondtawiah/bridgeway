@@ -9,12 +9,12 @@ export default function ExploreProgramsPage() {
   const { t } = useLanguage();
 
   const navLinks = [
-    { label: 'Home', href: '#', i18nKey: 'nav.home' },
-    { label: 'About Us', href: '#', i18nKey: 'nav.aboutUs' },
-    { label: 'Programs', href: '#explore', active: true, i18nKey: 'nav.programs' },
+    { label: 'Home', href: '/', i18nKey: 'nav.home' },
+    { label: 'About Us', href: '#about', i18nKey: 'nav.aboutUs' },
+    { label: 'Programs', href: '/explore', active: true, i18nKey: 'nav.programs' },
     { label: 'Why Ghana', href: '#', i18nKey: 'nav.whyGhana' },
     { label: 'Application', href: '#', i18nKey: 'nav.application' },
-    { label: 'Contact / FAQ', href: '#', i18nKey: 'nav.contactFaq' },
+    { label: 'Contact / FAQ', href: '#contact', i18nKey: 'nav.contactFaq' },
   ];
 
   const medicalTracks = t('explore.medicalTracks') as string[];

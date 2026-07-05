@@ -182,15 +182,35 @@ function NavLinkItem({ link, t, activePage }: { link: NavLink; t: (key: string, 
   const [isHovered, setIsHovered] = useState(false);
   const isActive = link.active || (activePage && link.href.includes(activePage));
   const translatedLabel = link.i18nKey ? t(link.i18nKey, link.label) : link.label;
-  const href = link.href.startsWith('#') ? link.href : `#${link.href}`;
+  const isHash = link.href.startsWith('#');
+
+  if (isHash) {
+    const href = link.href;
+    return (
+      <a
+        href={href}
+        onClick={(e) => {
+          e.preventDefault();
+          window.location.hash = href;
+        }}
+        className={`relative px-3 py-2 transition-colors ${
+          isActive ? 'text-emerald-700' : 'text-stone-600 hover:text-stone-900'
+        }`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <span className="relative z-10">{translatedLabel}</span>
+        <span
+          className="absolute bottom-0 left-0 h-0.5 bg-emerald-700 transition-all duration-300 ease-out"
+          style={{ width: isHovered || isActive ? '100%' : '0%' }}
+        />
+      </a>
+    );
+  }
 
   return (
-    <a
-      href={href}
-      onClick={(e) => {
-        e.preventDefault();
-        window.location.hash = href;
-      }}
+    <Link
+      href={link.href}
       className={`relative px-3 py-2 transition-colors ${
         isActive ? 'text-emerald-700' : 'text-stone-600 hover:text-stone-900'
       }`}
@@ -202,6 +222,6 @@ function NavLinkItem({ link, t, activePage }: { link: NavLink; t: (key: string, 
         className="absolute bottom-0 left-0 h-0.5 bg-emerald-700 transition-all duration-300 ease-out"
         style={{ width: isHovered || isActive ? '100%' : '0%' }}
       />
-    </a>
+    </Link>
   );
 }

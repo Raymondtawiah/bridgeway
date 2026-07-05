@@ -2,6 +2,7 @@ import './../css/app.css';
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { ToastProvider } from '@/components/toast';
 import WelcomePage from '@/pages/welcome';
 import ExploreProgramsPage from '@/pages/explore';
 
@@ -43,8 +44,10 @@ function StaticApp() {
 
   return (
     <LanguageProvider initialLocale="en">
-      {page === 'welcome' && <WelcomePage />}
-      {page === 'explore' && <ExploreProgramsPage />}
+      <ToastProvider>
+        {page === 'welcome' && <WelcomePage />}
+        {page === 'explore' && <ExploreProgramsPage />}
+      </ToastProvider>
     </LanguageProvider>
   );
 }

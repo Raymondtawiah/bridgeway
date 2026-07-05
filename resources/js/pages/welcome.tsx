@@ -12,11 +12,14 @@ import {
   Compass,
   Cpu,
   Briefcase,
-  CheckCircle
+  CheckCircle,
+  Mail
 } from 'lucide-react';
 import MainNavbar from '@/components/main-navbar';
 import MainFooter from '@/components/main-footer';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Link } from '@inertiajs/react';
+import { useToast } from '@/components/toast';
 
 /* ────────────────────────────────────────────────────────────────
    Reveal: fades + slides a section/element up into place the first
@@ -102,11 +105,11 @@ export default function WelcomePage() {
   ];
 
   const navLinks = [
-    { label: 'Home', href: '#', active: true, i18nKey: 'nav.home' },
+    { label: 'Home', href: '/', active: true, i18nKey: 'nav.home' },
     { label: 'About Us', href: '#about', i18nKey: 'nav.aboutUs' },
-    { label: 'Programs', href: '#explore', i18nKey: 'nav.programs' },
+    { label: 'Programs', href: '/explore', i18nKey: 'nav.programs' },
     { label: 'Why Ghana', href: '#why-ghana', i18nKey: 'nav.whyGhana' },
-    { label: 'Application', href: '#revenue', i18nKey: 'nav.application' },
+    { label: 'Application', href: '#', i18nKey: 'nav.application' },
     { label: 'Contact / FAQ', href: '#services', i18nKey: 'nav.contactFaq' },
   ];
 
@@ -126,10 +129,19 @@ export default function WelcomePage() {
       />
 
       {/* --- HERO SECTION --- */}
-      <section className="bg-gradient-to-br from-emerald-900 via-stone-900 to-amber-950 text-white py-24 lg:py-32 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="relative overflow-hidden text-white py-24 lg:py-32">
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
           <div
-            className={`lg:col-span-7 transition-all duration-700 ease-out ${
+            className={`lg:col-span-12 transition-all duration-700 ease-out ${
               heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
@@ -139,33 +151,16 @@ export default function WelcomePage() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
               {t('hero.title')}
             </h1>
-            <p className="text-lg text-stone-300 max-w-xl mb-8 leading-relaxed">
+            <p className="text-lg text-stone-100 max-w-xl mb-8 leading-relaxed">
               {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:-translate-y-0.5">
+              <Link href="/explore" className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:-translate-y-0.5">
                 {t('hero.ctaApply')}
-              </button>
-              <a href="#explore" className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5">
+              </Link>
+              <Link href="/explore" className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5">
                 {t('hero.ctaDiscover')}
-              </a>
-            </div>
-          </div>
-
-          {/* Side Context Widget */}
-          <div
-            className={`lg:col-span-5 bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-sm transition-all duration-700 ease-out ${
-              heroIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-            style={{ transitionDelay: heroIn ? '150ms' : '0ms' }}
-          >
-            <span className="text-xs uppercase tracking-widest font-mono text-amber-400 block mb-4">// {t('heroWidget.conceptLabel')}</span>
-            <p className="text-stone-300 text-base leading-relaxed mb-6">
-              {t('heroWidget.conceptText')}
-            </p>
-            <div className="border-t border-white/10 pt-4 space-y-3">
-              <div className="flex justify-between text-xs text-stone-400"><span>{t('heroWidget.ecoTarget')}</span><span className="text-white font-semibold">{t('heroWidget.ecoValue')}</span></div>
-              <div className="flex justify-between text-xs text-stone-400"><span>{t('heroWidget.focusPrimary')}</span><span className="text-white font-semibold">{t('heroWidget.focusValue')}</span></div>
+              </Link>
             </div>
           </div>
         </div>
@@ -313,9 +308,22 @@ export default function WelcomePage() {
           <p className="text-stone-400 max-w-3xl mx-auto mb-10 leading-relaxed text-base sm:text-lg">
             {t('cta.text')}
           </p>
-          <a href="#explore" className="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
+          <Link href="/explore" className="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
             {t('cta.button')} <ArrowRight className="w-5 h-5 ml-2" />
-          </a>
+          </Link>
+        </Reveal>
+      </section>
+
+      {/* --- CONTACT SECTION --- */}
+      <section id="contact" className="py-24 bg-stone-50">
+        <Reveal className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase block mb-2">{t('contact.kicker')}</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">{t('contact.title')}</h2>
+            <p className="mt-4 text-stone-600">{t('contact.subtitle')}</p>
+          </div>
+
+          <ContactForm />
         </Reveal>
       </section>
 
@@ -324,3 +332,66 @@ export default function WelcomePage() {
     </div>
   );
 }
+
+function ContactForm() {
+  const { t } = useLanguage();
+  const { success } = useToast();
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      success(t('contact.successMessage'), { title: t('contact.successTitle') });
+      setForm({ name: '', email: '', phone: '', subject: '', message: '' });
+    }, 1500);
+  };
+
+  const field =
+    'w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/40 outline-none transition';
+
+  return (
+    <form onSubmit={onSubmit} className="bg-white rounded-3xl border border-stone-200 p-6 sm:p-10 shadow-sm space-y-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <label className="space-y-1">
+          <span className="text-xs font-semibold text-stone-600">{t('contact.name')}</span>
+          <input required className={field} placeholder={t('contact.name')} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} disabled={loading} />
+        </label>
+        <label className="space-y-1">
+          <span className="text-xs font-semibold text-stone-600">{t('contact.email')}</span>
+          <input required type="email" className={field} placeholder={t('contact.email')} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} disabled={loading} />
+        </label>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <label className="space-y-1">
+          <span className="text-xs font-semibold text-stone-600">{t('contact.phone')}</span>
+          <input className={field} placeholder={t('contact.phone')} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} disabled={loading} />
+        </label>
+        <label className="space-y-1">
+          <span className="text-xs font-semibold text-stone-600">{t('contact.subject')}</span>
+          <input required className={field} placeholder={t('contact.subject')} value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} disabled={loading} />
+        </label>
+      </div>
+
+      <label className="space-y-1">
+        <span className="text-xs font-semibold text-stone-600">{t('contact.message')}</span>
+        <textarea required rows={5} className={field} placeholder={t('contact.message')} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} disabled={loading} />
+      </label>
+
+      <button type="submit" className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-8 py-3.5 rounded-xl shadow-md transition-all" disabled={loading}>
+        {t('contact.send')}
+      </button>
+    </form>
+  );
+}
+

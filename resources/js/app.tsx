@@ -3,6 +3,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { initializeTheme } from '@/hooks/use-appearance';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { ToastProvider } from '@/components/toast';
 import AppLayout from '@/layouts/app-layout';
 import AuthLayout from '@/layouts/auth-layout';
 import SettingsLayout from '@/layouts/settings/layout';
@@ -26,10 +27,12 @@ createInertiaApp({
     withApp(app) {
         return (
             <LanguageProvider>
-                <TooltipProvider delayDuration={0}>
-                    {app}
-                    <Toaster />
-                </TooltipProvider>
+                <ToastProvider>
+                    <TooltipProvider delayDuration={0}>
+                        {app}
+                        <Toaster />
+                    </TooltipProvider>
+                </ToastProvider>
             </LanguageProvider>
         );
     },

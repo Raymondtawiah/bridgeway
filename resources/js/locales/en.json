@@ -12,9 +12,9 @@
   },
   "hero": {
     "badge": "Bridgeway International Exchange Hub",
-    "title": "International internships & exchange programs in Ghana",
+    "title": "International Internships & Exchange Programs in Ghana",
     "subtitle": "Certified medical, technical, and social internships with dynamic personal support on the ground in Ghana. Connect professional development with safe, global work frameworks.",
-    "ctaApply": "Apply now",
+    "ctaApply": "Explore",
     "ctaDiscover": "Discover programs"
   },
   "heroWidget": {
@@ -138,6 +138,19 @@
   },
   "footer": {
     "copyright": "All rights reserved. Connecting World Exchange Ecosystems."
+  },
+  "contact": {
+    "kicker": "Get in Touch",
+    "title": "Contact Us",
+    "subtitle": "Have questions about programs, placements, or partnerships? Send us a message and we'll get back to you.",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "successTitle": "Message Sent",
+    "successMessage": "Thank you for reaching out. We'll respond within 24 hours."
   },
   "explore": {
     "kicker": "Curriculum Directory",
