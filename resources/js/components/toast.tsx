@@ -72,7 +72,9 @@ function ToastItem({ toast, onDismiss }) {
   const [leaving, setLeaving] = useState(false);
   const [paused, setPaused] = useState(false);
   const [phase, setPhase] = useState('loading');
+  const [barWidth, setBarWidth] = useState('100%');
   const timerRef = useRef(null);
+  const barRef = useRef(null);
 
   const close = useCallback(() => {
     setLeaving(true);
@@ -86,10 +88,16 @@ function ToastItem({ toast, onDismiss }) {
   }, [phase]);
 
   useEffect(() => {
+    if (phase !== 'toast' || paused) return;
+    if (duration > 0) {
+      const id = window.setTimeout(() => setBarWidth('0%'), 50);
+      return () => window.clearTimeout(id);
+    }
+  }, [phase, paused, duration]);
+
+  useEffect(() => {
     if (phase !== 'toast' || duration === Infinity || duration <= 0) return;
-
     timerRef.current = window.setTimeout(close, duration);
-
     return () => {
       if (timerRef.current) window.clearTimeout(timerRef.current);
     };
@@ -101,10 +109,6 @@ function ToastItem({ toast, onDismiss }) {
         <div className="toast-backdrop" />
         <div className="toast-fullscreen-loader">
           <Loader />
-          <div
-            className="toast-loading-bar"
-            style={{ backgroundColor: variant.color }}
-          />
         </div>
       </div>
     );
@@ -132,11 +136,12 @@ function ToastItem({ toast, onDismiss }) {
       {duration !== Infinity && duration > 0 && (
         <div className="toast-track">
           <div
+            ref={barRef}
             className="toast-bar"
             style={{
               backgroundColor: variant.color,
-              animation: `toast-shrink ${duration}ms linear forwards`,
-              animationPlayState: paused ? 'paused' : 'running',
+              width: barWidth,
+              transition: paused ? 'none' : `width ${duration}ms linear`,
             }}
           />
         </div>
@@ -271,8 +276,6 @@ function Styles() {
       .toast-bar{
         height: 100%;
         width: 100%;
-        transform-origin: left center;
-        transform: scaleX(1);
       }
 
       .toast-loading-bar{

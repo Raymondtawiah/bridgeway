@@ -86,6 +86,8 @@ export default function WelcomePage() {
     return () => cancelAnimationFrame(id);
   }, []);
 
+  const [marqueePaused, setMarqueePaused] = useState(false);
+
   const objectives = [
     t('objectives.items.0'),
     t('objectives.items.1'),
@@ -282,7 +284,28 @@ export default function WelcomePage() {
             <p className="mt-4 text-stone-600">{t('services.subtitle')}</p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Marquee on mobile, grid on md+ */}
+          <div className="md:hidden overflow-hidden -mx-4">
+            <div
+              className={`marquee-track ${marqueePaused ? 'paused' : ''}`}
+              onClick={() => setMarqueePaused((p) => !p)}
+            >
+              {[...services, ...services].map((service, idx) => (
+                <div
+                  key={idx}
+                  className="w-[80vw] shrink-0 mx-3 bg-white p-6 rounded-2xl border border-stone-200"
+                >
+                  <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-5">
+                    {React.cloneElement(service.icon, { className: "w-6 h-6 text-emerald-700" })}
+                  </div>
+                  <h4 className="text-lg font-bold text-stone-900 mb-2">{service.title}</h4>
+                  <p className="text-sm text-stone-500 leading-relaxed">{service.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, idx) => (
               <Reveal
                 key={idx}
