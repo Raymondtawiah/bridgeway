@@ -1,8 +1,11 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import en from '../locales/en.json';
 import fr from '../locales/fr.json';
+import de from '../locales/de.json';
+import it from '../locales/it.json';
+import pt from '../locales/pt.json';
 
-type Locale = 'en' | 'fr';
+type Locale = 'en' | 'fr' | 'de' | 'it' | 'pt';
 
 type Translations = typeof en;
 
@@ -15,7 +18,7 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
-const translations: Record<Locale, Translations> = { en, fr };
+const translations: Record<Locale, Translations> = { en, fr, de, it, pt };
 
 function getNestedValue(obj: Record<string, unknown>, path: string): unknown {
   return path.split('.').reduce((acc: unknown, part: string) => {
@@ -54,7 +57,7 @@ type Props = {
 export function LanguageProvider({ children, initialLocale }: Props) {
   const [locale, setLocaleState] = useState<Locale>(() => {
     const stored = typeof window !== 'undefined' ? localStorage.getItem('app_locale') : null;
-    return (stored === 'en' || stored === 'fr') ? stored : initialLocale ?? 'en';
+    return (stored === 'en' || stored === 'fr' || stored === 'de' || stored === 'it' || stored === 'pt') ? stored : initialLocale ?? 'en';
   });
 
   useEffect(() => {
@@ -63,7 +66,11 @@ export function LanguageProvider({ children, initialLocale }: Props) {
 
   const t = useTranslations(locale);
   const setLocale = (next: Locale) => setLocaleState(next);
-  const toggleLocale = () => setLocaleState((prev) => (prev === 'en' ? 'fr' : 'en'));
+  const toggleLocale = () => setLocaleState((prev) => {
+    const locales: Locale[] = ['en', 'fr', 'de', 'it', 'pt'];
+    const idx = locales.indexOf(prev);
+    return locales[(idx + 1) % locales.length];
+  });
 
   return (
     <LanguageContext.Provider value={{ locale, setLocale, toggleLocale, t }}>

@@ -1,0 +1,173 @@
+{
+  "brand": "BRIDGEWAY",
+  "brandSuffix": "LLC",
+  "nav": {
+    "home": "Home",
+    "aboutUs": "Chi siamo",
+    "programs": "Programmi",
+    "whyGhana": "Perché il Ghana",
+    "application": "Candidatura",
+    "contactFaq": "Contatto / FAQ",
+    "applyNow": "Candidati ora"
+  },
+  "hero": {
+    "badge": "BRIDGEWAY International Exchange Hub",
+    "title": "Stage Internazionali e Programmi di Scambio in Ghana",
+    "subtitle": "Stage medici, tecnici e sociali certificati con supporto personale dinamico sul campo in Ghana. Connetti lo sviluppo professionale con framework di lavoro globali sicuri.",
+    "ctaApply": "Esplora",
+    "ctaDiscover": "Scopri i programmi"
+  },
+  "heroWidget": {
+    "conceptLabel": "// Concetto Aziendale",
+    "conceptText": "BRIDGEWAY LLC è una società dedicata agli scambi internazionali e all'immersione culturale che collega individui, istituzioni e professionisti con opzioni di sviluppo curate in tutto il Ghana.",
+    "ecoTarget": "Ecosistema Target:",
+    "ecoValue": "Hub di Accra, Ghana",
+    "focusPrimary": "Focus Principale:",
+    "focusValue": "Trasferimento di Competenze & Crescita"
+  },
+  "about": {
+    "kicker": "Chi siamo",
+    "headline": "BRIDGEWAY LLC",
+    "p1": "BRIDGEWAY LLC è una società internazionale di scambi e immersione culturale orientata al profitto, dedicata a collegare individui, istituzioni, organizzazioni e professionisti di tutto il mondo con opportunità di scambio significative in Ghana.",
+    "p2": "Attraverso programmi attentamente progettati nei settori dell'istruzione, sanità, sport, agricoltura, turismo, tecnologia dell'informazione, imprenditorialità e sviluppo comunitario, BRIDGEWAY crea esperienze trasformative che favoriscono la collaborazione globale, la comprensione culturale, il trasferimento di competenze e la crescita economica.",
+    "p3": "L'azienda funge da ponte tra il Ghana e la comunità internazionale facilitando tirocini, placement di volontari, scambi studenteschi, tirocini professionali, programmi di immersione culturale, tour di studio e programmi di scambio specializzati per settore."
+  },
+  "whyGhana": {
+    "kicker": "Perché il Ghana",
+    "headline": "Panoramica Aziendale",
+    "subhead": "Un hub vivace per scambi internazionali e crescita professionale.",
+    "p1": "Il mondo è sempre più interconnesso, creando una domanda crescente di esperienze internazionali, scambio culturale, esposizione professionale e opportunità di networking globale.",
+    "p2": "Il Ghana, noto per la sua stabilità politica, il ricco patrimonio culturale, il suo popolo accogliente, le istituzioni educative, l'ecosistema tecnologico in crescita e il settore agricolo fiorente, rappresenta una destinazione unica per i programmi di scambio.",
+    "highlight": "BRIDGEWAY LLC mira a sfruttare questa opportunità posizionandosi come un hub internazionale completo che fornisce esperienze di scambio complete per individui e organizzazioni in tutto il mondo."
+  },
+  "visionMission": {
+    "visionTitle": "La Nostra Visione",
+    "visionText": "Diventare l'organizzazione leader in Africa per scambi internazionali e immersione culturale, collegando persone, idee e opportunità oltre i confini per uno sviluppo sostenibile e un impatto globale.",
+    "missionTitle": "La Nostra Missione",
+    "missionText": "Fornire esperienze di scambio di alta qualità, sicure e ad alto impatto che promuovano la comprensione culturale, lo sviluppo professionale, l'innovazione e la collaborazione internazionale, contribuendo nel contempo alla crescita socio-economica del Ghana."
+  },
+  "objectives": {
+    "sectionKicker": "Quadro Strategico",
+    "sectionTitle": "I Nostri Obiettivi Principali",
+    "sectionIntro": "Tappe concrete focalizzate su garanzia della qualità, allineamento dei valori strutturali e partnership strategiche.",
+    "items": [
+      "Facilitare programmi di scambio internazionali in più settori.",
+      "Promuovere il Ghana come destinazione preferita per scambi educativi e professionali.",
+      "Generare ricavi sostenibili attraverso servizi di scambio premium.",
+      "Sostenere partnership e collaborazioni internazionali.",
+      "Supportare le istituzioni locali attraverso l'esposizione globale e il trasferimento di conoscenze."
+    ]
+  },
+  "services": {
+    "kicker": "Prodotti e Servizi",
+    "title": "Programmi di Scambio Settoriali Specializzati",
+    "subtitle": "Percorsi su misura, multisettoriali, programmati per professionisti, studenti e organizzazioni in tutto il mondo.",
+    "items": [
+      {
+        "title": "Programmi di Scambio Educativo",
+        "desc": "Collegare studenti e istituzioni accademiche per l'apprendimento globale e il trasferimento di crediti formativi."
+      },
+      {
+        "title": "Programmi di Scambio Sanitario",
+        "desc": "Placement medici, rotazioni cliniche e trasferimento di conoscenze in ospedali regionali certificati."
+      },
+      {
+        "title": "Programmi di Scambio Agricolo",
+        "desc": "Pratiche agricole sostenibili, collaborazione agribusiness e iniziative di sviluppo rurale."
+      },
+      {
+        "title": "Programmi di Scambio Sportivo",
+        "desc": "Sviluppo atletico, scouting, tornei interculturali e scambi di gestione sportiva."
+      },
+      {
+        "title": "Turismo e Scambio Culturale",
+        "desc": "Immersione culturale curata, tour del patrimonio ed esperienze locali autentiche in tutto il Ghana."
+      },
+      {
+        "title": "Scambio di Tecnologie dell'Informazione",
+        "desc": "Collaborazione ecosistema tech, coding bootcamp, innovazione digitale e placement in sviluppo software."
+      },
+      {
+        "title": "Scambio Aziendale e Professionale",
+        "desc": "Tirocini professionali, tirocini, networking executive e programmi di partnership aziendale."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Perché sceglierci",
+    "beforeTitle": "Il Vostro Vantaggio Strategico",
+    "heading": "Collegare la conoscenza locale con la pratica internazionale",
+    "text": "BRIDGEWAY LLC collega lo sviluppo professionale con una reale esperienza lavorativa internazionale in un quadro strutturato e sicuro. Ogni percorso integra l'apprendimento professionale pratico con una profonda esposizione interculturale.",
+    "button": "Esplora i Programmi"
+  },
+  "whyChoose": {
+    "sectionTitle": "Perché scegliere i nostri placement?",
+    "sectionSubtitle": "Sostituiamo l'incertezza del viaggio con un'infrastruttura istituzionale verificata.",
+    "items": [
+      {
+        "title": "Stage Certificati",
+        "desc": "Placement completamente strutturati che corrispondono accuratamente a criteri educativi e lavorativi formali."
+      },
+      {
+        "title": "Rete Istituzionale",
+        "desc": "Dirette partnership basilari con i principali ospedali regionali, scuole e organismi aziendali."
+      },
+      {
+        "title": "Supporto Sul Campo",
+        "desc": "Personale dedicato direttamente dispiegato sul campo per assistervi in ogni fase dell'immersione."
+      },
+      {
+        "title": "Sicuro e Strutturato",
+        "desc": "Un modello operativo strettamente gestito costruito interamente attorno alla sicurezza e al comfort dei partecipanti."
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "Tutti i diritti riservati. Collegare gli Ecosistemi di Scambio Mondiale."
+  },
+  "contact": {
+    "kicker": "Contattaci",
+    "title": "Contattaci",
+    "subtitle": "Hai domande su programmi, placement o partnership? Inviaci un messaggio e ti risponderemo al più presto.",
+    "name": "Nome completo",
+    "email": "Indirizzo email",
+    "phone": "Numero di telefono",
+    "subject": "Oggetto",
+    "message": "Messaggio",
+    "send": "Invia messaggio",
+    "successTitle": "Messaggio inviato",
+    "successMessage": "Grazie per averci contattato. Ti risponderemo entro 24 ore."
+  },
+  "explore": {
+    "kicker": "Catalogo dei Programmi",
+    "title": "Trova il programma adatto a te",
+    "subtitle": "I nostri programmi combinano un'esperienza lavorativa pratica di alto livello con apprendimento internazionale e sviluppo personale intenzionale.",
+    "medicalTitle": "Stage Medici",
+    "medicalDesc": "Placement pratici strutturati, strettamente supervisionati e completamente valutati per studenti di percorsi clinici e medici in ospedali regionali certificati in Ghana.",
+    "medicalTracksLabel": "Percorsi Operativi Disponibili",
+    "medicalTracks": [
+      "Tirocinio di Infermieristica",
+      "Rotazione Clinica / Famulatur",
+      "Tirocinio Finale / PJ"
+    ],
+    "medicalFocus": "Priorità: Riconoscimento, Pratica, Esposizione alle Dinamiche Sanitarie Globali.",
+    "techTitle": "Stage Tecnici",
+    "techDesc": "Placement pratici adattati a studenti universitari e professionisti tecnici provenienti da settori diversi.",
+    "techFieldsLabel": "Campi di Specializzazione Principali",
+    "techFields": [
+      "Infermieristica & Sanità Pubblica",
+      "Servizio Sociale",
+      "Educazione / Pedagogia",
+      "Impresa & Amministrazione"
+    ],
+    "techFocus": "Priorità: Trasferimento di Competenze, Attaccamento Organizzativo, Analisi dei Sistemi.",
+    "volunteerTitle": "Programmi di Volontariato",
+    "volunteerDesc": "Impiego attivo e coinvolgimento personale in progetti specializzati di sviluppo sociale locale con approfondimento diretto delle strutture civili locali.",
+    "interculturalTitle": "Scambio Interculturale",
+    "interculturalDesc": "Sperimenta, impara e cresci attraverso un'integrazione comunitaria deliberata, familiarità linguistica e una profonda costruzione locale di prospettive.",
+    "ctaTitle": "Pronto a trovare il tuo percorso?",
+    "ctaText": "Connettiti direttamente con uno specialista per verificare l'allineamento dei crediti del corso, le finestre di candidatura e le prossime cohort istituzionali.",
+    "ctaButton": "Richiedi Consulenza Ora",
+    "footerSuffix": "Ecosistema del Quadro Programmatico."
+  }
+}

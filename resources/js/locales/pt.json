@@ -1,0 +1,173 @@
+{
+  "brand": "BRIDGEWAY",
+  "brandSuffix": "LLC",
+  "nav": {
+    "home": "Início",
+    "aboutUs": "Sobre nós",
+    "programs": "Programas",
+    "whyGhana": "Por que Gana",
+    "application": "Candidatura",
+    "contactFaq": "Contato / FAQ",
+    "applyNow": "Candidatar agora"
+  },
+  "hero": {
+    "badge": "BRIDGEWAY International Exchange Hub",
+    "title": "Estágios Internacionais e Programas de Intercâmbio em Gana",
+    "subtitle": "Estágios médicos, técnicos e sociais certificados com suporte pessoal dinâmico no terreno em Gana. Conecte o desenvolvimento profissional com estruturas de trabalho globais seguras.",
+    "ctaApply": "Explorar",
+    "ctaDiscover": "Descobrir programas"
+  },
+  "heroWidget": {
+    "conceptLabel": "// Conceito de Negócio",
+    "conceptText": "BRIDGEWAY LLC é uma empresa dedicada a intercâmbios internacionais e imersão cultural, conectando indivíduos, instituições e profissionais com opções de desenvolvimento curadas em todo o Gana.",
+    "ecoTarget": "Ecossistema Alvo:",
+    "ecoValue": "Hub de Acra, Gana",
+    "focusPrimary": "Foco Principal:",
+    "focusValue": "Transferência de Competências & Crescimento"
+  },
+  "about": {
+    "kicker": "Sobre nós",
+    "headline": "BRIDGEWAY LLC",
+    "p1": "BRIDGEWAY LLC é uma empresa de intercâmbio internacional e imersão cultural orientada ao lucro, dedicada a conectar indivíduos, instituições, organizações e profissionais de todo o mundo com oportunidades significativas de intercâmbio no Gana.",
+    "p2": "Por meio de programas cuidadosamente projetados nas áreas de educação, saúde, esportes, agricultura, turismo, tecnologia da informação, empreendedorismo e desenvolvimento comunitário, a BRIDGEWAY cria experiências transformadoras que promovem colaboração global, compreensão cultural, transferência de competências e crescimento econômico.",
+    "p3": "A empresa serve como uma ponte entre o Gana e a comunidade internacional, facilitando estágios, colocações de voluntários, intercâmbios estudantis, estágios profissionais, programas de imersão cultural, visitas de estudo e programas especializados de intercâmbio setorial."
+  },
+  "whyGhana": {
+    "kicker": "Por que Gana",
+    "headline": "Visão Geral da Empresa",
+    "subhead": "Um centro vibrante para intercâmbios internacionais e crescimento profissional.",
+    "p1": "O mundo está cada vez mais interconectado, criando uma demanda crescente por experiências internacionais, intercâmbio cultural, exposição profissional e oportunidades de networking global.",
+    "p2": "O Gana, conhecido pela sua estabilidade política, rico patrimônio cultural, povo acolhedor, instituições educacionais, ecossistema tecnológico crescente e setor agrícola próspero, apresenta um destino único para programas de intercâmbio.",
+    "highlight": "BRIDGEWAY LLC busca capitalizar essa oportunidade posicionando-se como um hub de intercâmbio internacional completo que proporciona experiências abrangentes para indivíduos e organizações em todo o mundo."
+  },
+  "visionMission": {
+    "visionTitle": "Nossa Visão",
+    "visionText": "Tornar-se a organização líder na África em intercâmbios internacionais e imersão cultural, conectando pessoas, ideias e oportunidades além das fronteiras para desenvolvimento sustentável e impacto global.",
+    "missionTitle": "Nossa Missão",
+    "missionText": "Fornecer experiências de intercâmbio de alta qualidade, seguras e de alto impacto que promovam a compreensão cultural, o desenvolvimento profissional, a inovação e a colaboração internacional, contribuindo ao mesmo tempo para o crescimento socioeconômico de Gana."
+  },
+  "objectives": {
+    "sectionKicker": "Quadro Estratégico",
+    "sectionTitle": "Nossos Objetivos Principais",
+    "sectionIntro": "Marcos concretos focados em garantia de qualidade, alinhamento de valores estruturais e parcerias estratégicas.",
+    "items": [
+      "Facilitar programas de intercâmbio internacional em múltiplos setores.",
+      "Promover Gana como destino preferido para intercâmbios educacionais e profissionais.",
+      "Gerar receita sustentável por meio de serviços de intercâmbio premium.",
+      "Promover parcerias e colaborações internacionais.",
+      "Apoiar instituições locais por meio de exposição global e transferência de conhecimento."
+    ]
+  },
+  "services": {
+    "kicker": "Produtos e Serviços",
+    "title": "Programas Especializados de Intercâmbio Setorial",
+    "subtitle": "Caminhos personalizados, multissetoriais, mapeados para profissionais, estudantes e organizações em todo o mundo.",
+    "items": [
+      {
+        "title": "Programas de Intercâmbio Educacional",
+        "desc": "Conectando estudantes e instituições acadêmicas para aprendizagem global e transferência de créditos."
+      },
+      {
+        "title": "Programas de Intercâmbio na Saúde",
+        "desc": "Colocações médicas, rotações clínicas e transferência de conhecimento em hospitais regionais certificados."
+      },
+      {
+        "title": "Programas de Intercâmbio Agrícola",
+        "desc": "Práticas agrícolas sustentáveis, colaboração agronegócio e iniciativas de desenvolvimento rural."
+      },
+      {
+        "title": "Programas de Intercâmbio Desportivo",
+        "desc": "Desenvolvimento atlético, observação de talentos, torneios interculturais e intercâmbios de gestão desportiva."
+      },
+      {
+        "title": "Turismo e Intercâmbio Cultural",
+        "desc": "Imersão cultural curada, passeios de patrimônio e experiências locais autênticas em todo o Gana."
+      },
+      {
+        "title": "Intercâmbio em Tecnologias da Informação",
+        "desc": "Colaboração de ecossistema tech, bootcamps, inovação digital e colocação em desenvolvimento de software."
+      },
+      {
+        "title": "Intercâmbio Corporativo e Profissional",
+        "desc": "Estágios profissionais, estágios, networking executivo e programas de parceria corporativa."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Por que escolher-nos",
+    "beforeTitle": "Sua Vantagem Estratégica",
+    "heading": "Conectando o conhecimento local com a prática internacional",
+    "text": "A BRIDGEWAY LLC conecta o desenvolvimento profissional com a experiência real de trabalho internacional em uma estrutura estruturada e segura. Cada caminho integra o aprendizado profissional prático com uma profunda exposição intercultural.",
+    "button": "Explorar Programas"
+  },
+  "whyChoose": {
+    "sectionTitle": "Por que escolher nossos placements?",
+    "sectionSubtitle": "Substituímos a incerteza da viagem por infraestrutura institucional verificada.",
+    "items": [
+      {
+        "title": "Estágios Certificados",
+        "desc": "Colocações totalmente estruturadas que mapeiam com precisão os critérios educacionais e laborais formais."
+      },
+      {
+        "title": "Rede Institucional",
+        "desc": "Parcerias diretas com os principais hospitais regionais, escolas e organismos corporativos."
+      },
+      {
+        "title": "Suporte No Local",
+        "desc": "Pessoal dedicado diretamente implantado no local para ajudá-lo em cada estágio da imersão."
+      },
+      {
+        "title": "Seguro e Estruturado",
+        "desc": "Um modelo operacional rigorosamente gerenciado construído inteiramente em torno da segurança e do conforto dos participantes."
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "Todos os direitos reservados. Conectando Ecossistemas de Intercâmbio Mundial."
+  },
+  "contact": {
+    "kicker": "Entre em contato",
+    "title": "Contate-nos",
+    "subtitle": "Tem dúvidas sobre programas, colocações ou parcerias? Envie-nos uma mensagem e entraremos em contato em breve.",
+    "name": "Nome completo",
+    "email": "Endereço de e-mail",
+    "phone": "Número de telefone",
+    "subject": "Assunto",
+    "message": "Mensagem",
+    "send": "Enviar mensagem",
+    "successTitle": "Mensagem enviada",
+    "successMessage": "Obrigado por entrar em contato. Responderemos dentro de 24 horas."
+  },
+  "explore": {
+    "kicker": "Diretório de Programas",
+    "title": "Encontre o programa ideal para você",
+    "subtitle": "Nossos programas combinam experiência profissional prática de alto nível com aprendizado internacional e desenvolvimento pessoal intencional.",
+    "medicalTitle": "Estágios Médicos",
+    "medicalDesc": "Colocações práticas estruturadas, estreitamente supervisionadas e totalmente avaliadas para estudantes de cursos clínicos e médicos em hospitais regionais certificados em Gana.",
+    "medicalTracksLabel": "Trilhas Operacionais Disponíveis",
+    "medicalTracks": [
+      "Estágio em Enfermagem",
+      "Rotação Clínica / Famulatura",
+      "Estágio Final / PJ"
+    ],
+    "medicalFocus": "Prioridades: Reconhecimento, Prática, Exposição às Dinâmicas de Saúde Global.",
+    "techTitle": "Estágios Técnicos",
+    "techDesc": "Colocações práticas adaptadas a alunos universitários e profissionais técnicos provenientes de diversos setores multissetoriais.",
+    "techFieldsLabel": "Áreas de Especialização Principais",
+    "techFields": [
+      "Enfermagem & Saúde Pública",
+      "Serviço Social",
+      "Educação / Pedagogia",
+      "Negócios & Administração"
+    ],
+    "techFocus": "Prioridades: Transferência de Competências, Vinculação Organizacional, Análise de Sistemas.",
+    "volunteerTitle": "Programas de Voluntariado",
+    "volunteerDesc": "Implantação ativa e engajamento pessoal em projetos especializados de desenvolvimento social local com insights diretos nas estruturas cívicas locais.",
+    "interculturalTitle": "Intercâmbio Intercultural",
+    "interculturalDesc": "Experimente, aprenda e cresça por meio de integração comunitária deliberada, familiaridade linguística e profunda construção local de perspectivas.",
+    "ctaTitle": "Pronto para encontrar o seu perfil?",
+    "ctaText": "Conecte-se diretamente com um especialista para verificar o alinhamento de créditos do curso, janelas de inscrição e próximas coortes institucionais.",
+    "ctaButton": "Solicite Consulta Agora",
+    "footerSuffix": "Ecossistema do Quadro do Programa."
+  }
+}

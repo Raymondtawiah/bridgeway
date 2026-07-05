@@ -1,0 +1,173 @@
+{
+  "brand": "BRIDGEWAY",
+  "brandSuffix": "LLC",
+  "nav": {
+    "home": "Startseite",
+    "aboutUs": "Über uns",
+    "programs": "Programme",
+    "whyGhana": "Warum Ghana",
+    "application": "Bewerbung",
+    "contactFaq": "Kontakt / FAQ",
+    "applyNow": "Jetzt bewerben"
+  },
+  "hero": {
+    "badge": "BRIDGEWAY International Exchange Hub",
+    "title": "Internationale Praktika & Austauschprogramme in Ghana",
+    "subtitle": "Zertifizierte medizinische, technische und soziale Praktika mit dynamischer persönlicher Unterstützung vor Ort in Ghana. Verbinden Sie berufliche Entwicklung mit sicheren, globalen Arbeitsrahmen.",
+    "ctaApply": "Erkunden",
+    "ctaDiscover": "Programme entdecken"
+  },
+  "heroWidget": {
+    "conceptLabel": "// Geschäftskonzept",
+    "conceptText": "BRIDGEWAY LLC ist ein Dediziertes internationales Austausch- und Kulturaustauschunternehmen, das Einzelpersonen, Institutionen und Fachkräfte mit kuratierten Entwicklungsoptionen in ganz Ghana verbindet.",
+    "ecoTarget": "Zielökosystem:",
+    "ecoValue": "Accra, Ghana Hub",
+    "focusPrimary": "Primärer Fokus:",
+    "focusValue": "Kompetenztransfer & Wachstum"
+  },
+  "about": {
+    "kicker": "Über uns",
+    "headline": "BRIDGEWAY LLC",
+    "p1": "BRIDGEWAY LLC ist ein gewinnorientiertes internationales Austausch- und Kulturaustauschunternehmen, das sich darauf konzentriert, Einzelpersonen, Institutionen, Organisationen und Fachkräfte aus der ganzen Welt mit sinnvollen Austauschmöglichkeiten in Ghana zu verbinden.",
+    "p2": "Durch sorgfältig gestaltete Programme in den Bereichen Bildung, Gesundheitswesen, Sport, Landwirtschaft, Tourismus, Informationstechnologie, Unternehmertum und Gemeindeentwicklung schafft BRIDGEWAY transformative Erfahrungen, die globale Zusammenarbeit, kulturelles Verständnis, Kompetenztransfer und Wirtschaftswachstum fördern.",
+    "p3": "Das Unternehmen dient als Brücke zwischen Ghana und der internationalen Gemeinschaft durch die Vermittlung von Praktika, Freiwilligenplatzierungen, Studentenaustausch, Berufspraktika, Kulturaustauschprogrammen, Studienreisen und spezialisierten Branchenaustauschprogrammen."
+  },
+  "whyGhana": {
+    "kicker": "Warum Ghana",
+    "headline": "Unternehmensübersicht",
+    "subhead": "Ein lebendiges Zentrum für internationalen Austausch und berufliches Wachstum.",
+    "p1": "Die Welt ist zunehmend miteinander verbunden, was eine wachsende Nachfrage nach internationalen Erfahrungen, Kulturaustausch, beruflicher Entfaltung und globalen Networking-Möglichkeiten schafft.",
+    "p2": "Ghana, bekannt für seine politische Stabilität, sein reiches kulturelles Erbe, sein gastfreundliches Volk, seine Bildungseinrichtungen, sein wachsendes Technologieökosystem und seinen blühenden Agrarsektor, bietet ein einzigartiges Ziel für Austauschprogramme.",
+    "highlight": "BRIDGEWAY LLC möchte diese Gelegenheit nutzen, indem es sich als zentraler internationaler Austauschhub positioniert, der umfassende Austauscherlebnisse für Einzelpersonen und Organisationen weltweit bietet."
+  },
+  "visionMission": {
+    "visionTitle": "Unsere Vision",
+    "visionText": "Afrikas führende Organisation für internationalen Austausch und kulturelle Immersion zu werden, die Menschen, Ideen und Möglichkeiten über Grenzen hinweg für nachhaltige Entwicklung und globale Wirkung verbindet.",
+    "missionTitle": "Unsere Mission",
+    "missionText": "Hochwertige, sichere und wirkungsvolle Austauscherlebnisse zu bieten, die kulturelles Verständnis, berufliche Entwicklung, Innovation und internationale Zusammenarbeit fördern und gleichzeitig einen Beitrag zum sozioökonomischen Wachstum Ghanas leisten."
+  },
+  "objectives": {
+    "sectionKicker": "Strategischer Rahmen",
+    "sectionTitle": "Unsere Kernziele",
+    "sectionIntro": "Konkrete Meilensteine mit Fokus auf Qualitätssicherung, struktureller Wertausrichtung und strategischen Partnerschaften.",
+    "items": [
+      "Internationale Austauschprogramme in mehreren Sektoren ermöglichen.",
+      "Ghana als bevorzugtes Ziel für Bildungs- und Berufsaustausch fördern.",
+      "Nachhaltige Einnahmen durch hochwertige Austauschdienstleistungen generieren.",
+      "Internationale Partnerschaften und Kooperationen aufbauen.",
+      "Lokale Institutionen durch globale Öffnung und Wissenstransfer unterstützen."
+    ]
+  },
+  "services": {
+    "kicker": "Produkte und Dienstleistungen",
+    "title": "Spezialisierte Branchenaustauschprogramme",
+    "subtitle": "Maßgeschneiderte, multisektorale Wege für Fachkräfte, Studierende und Organisationen weltweit.",
+    "items": [
+      {
+        "title": "Bildungsaustauschprogramme",
+        "desc": "Verbindung von Studierenden und akademischen Institutionen für globales Lernen und Anrechnung von Leistungen."
+      },
+      {
+        "title": "Gesundheitsaustauschprogramme",
+        "desc": "Medizinische Platzierungen, klinische Rotationen und Wissenstransfer in zertifizierten Regionalkrankenhäusern."
+      },
+      {
+        "title": "Agraraustauschprogramme",
+        "desc": "Nachhaltige Anbaumethoden, Agribusiness-Zusammenarbeit und Initiativen zur ländlichen Entwicklung."
+      },
+      {
+        "title": "Sportaustauschprogramme",
+        "desc": "Athletische Förderung, Scouting, interkulturelle Turniere und Sportmanagement-Austausch."
+      },
+      {
+        "title": "Tourismus und Kulturaustausch",
+        "desc": "Kuratierte kulturelle Immersion, Erbes-Touren und authentische lokale Erlebnisse in ganz Ghana."
+      },
+      {
+        "title": "Informationstechnologie-Austausch",
+        "desc": "Technologie-Ökosystem-Zusammenarbeit, Coding-Bootcamps, digitale Innovation und Softwareentwicklung-Platzierungen."
+      },
+      {
+        "title": "Unternehmens- und Berufsaustausch",
+        "desc": "Berufspraktika, Praktika, Executive Networking und Kooperationsprogramme mit Unternehmen."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Warum wir uns unterscheiden",
+    "beforeTitle": "Ihr strategischer Vorteil",
+    "heading": "Lokales Wissen mit internationaler Praxis verbinden",
+    "text": "BRIDGEWAY LLC verbindet berufliche Weiterentwicklung mit echten internationalen Arbeitserfahrungen in einem strukturierten und sicheren Rahmen. Jeder Weg integriert praktisches berufliches Lernen mit tiefgreifender interkultureller Erfahrung.",
+    "button": "Programme erkunden"
+  },
+  "whyChoose": {
+    "sectionTitle": "Warum unsere Platzierungen?",
+    "sectionSubtitle": "Wir ersetzen Reiseunsicherheit durch verifizierte institutionelle Infrastruktur.",
+    "items": [
+      {
+        "title": "Zertifizierte Praktika",
+        "desc": "Vollständig strukturierte Platzierungen, die genau auf formale Bildungs- und Arbeitsplatzkriterien abgestimmt sind."
+      },
+      {
+        "title": "Institutionelles Netzwerk",
+        "desc": "Direkte Grundlagenpartnerschaften mit wichtigen Regionalkrankenhäusern, Schulen und Unternehmensorganisationen."
+      },
+      {
+        "title": "Vor-Ort-Unterstützung",
+        "desc": "Engagiertes Personal, das direkt vor Ort bereitgestellt wird, um Sie in jeder Phase der Immersion zu unterstützen."
+      },
+      {
+        "title": "Sicher & Strukturiert",
+        "desc": "Ein streng verwaltetes Betriebsmodell, das vollständig auf die Sicherheit und den Komfort der Teilnehmer abgestimmt ist."
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "Alle Rechte vorbehalten. Connecting World Exchange Ecosystems."
+  },
+  "contact": {
+    "kicker": "Kontakt aufnehmen",
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Haben Sie Fragen zu Programmen, Platzierungen oder Partnerschaften? Senden Sie uns eine Nachricht und wir werden uns bei Ihnen melden.",
+    "name": "Vollständiger Name",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer",
+    "subject": "Betreff",
+    "message": "Nachricht",
+    "send": "Nachricht senden",
+    "successTitle": "Nachricht gesendet",
+    "successMessage": "Vielen Dank für Ihre Kontaktaufnahme. Wir werden uns innerhalb von 24 Stunden bei Ihnen melden."
+  },
+  "explore": {
+    "kicker": "Studienverzeichnis",
+    "title": "Finden Sie Ihr passendes Programm",
+    "subtitle": "Unsere Programme kombinieren hochwertige praktische Berufserfahrung mit internationalem Lernen und bewusster persönlicher Entwicklung.",
+    "medicalTitle": "Medizinische Praktika",
+    "medicalDesc": "Strukturierte, eng betreute und vollständig evaluierte praktische Platzierungen für klinische und medizinische Studiengänge in zertifizierten Regionalkrankenhäusern in Ghana.",
+    "medicalTracksLabel": "Verfügbare Operationsbereiche",
+    "medicalTracks": [
+      "Krankenpflege-Praktikum",
+      "Klinische Rotation / Famulatur",
+      "Praktisches Jahr / PJ"
+    ],
+    "medicalFocus": "Schwerpunkte: Anerkennung, Praxis, Einblick in globale Gesundheitsdynamiken.",
+    "techTitle": "Technische Praktika",
+    "techDesc": "Praktische Platzierungen abgestimmt auf Hochschulstudenten und technische Fachkräfte aus verschiedenen Branchen.",
+    "techFieldsLabel": "Kernfachbereiche",
+    "techFields": [
+      "Krankenpflege & Öffentliche Gesundheit",
+      "Sozialarbeit",
+      "Bildung / Pädagogik",
+      "Unternehmen & Verwaltung"
+    ],
+    "techFocus": "Schwerpunkte: Kompetenztransfer, Organisatorische Anbindung, Systemanalyse.",
+    "volunteerTitle": "Freiwilligenprogramme",
+    "volunteerDesc": "Aktiver Einsatz und persönliches Engagement in spezialisierten lokalisierten Sozialentwicklungsprojekten mit direktem Einblick in lokale zivilgesellschaftliche Strukturen.",
+    "interculturalTitle": "Interkultureller Austausch",
+    "interculturalDesc": "Erleben, lernen und wachsen Sie durch bewusste Gemeinschaftsintegration, Sprachkenntnisse und tiefgreffende lokale Perspektivenbildung.",
+    "ctaTitle": "Bereit, Ihren Kurs zu finden?",
+    "ctaText": "Setzen Sie sich direkt mit einem Spezialisten in Verbindung, um die Anerkennung von Studienleistungen, Bewerbungsfristen und kommende institutionelle Kohorten zu prüfen.",
+    "ctaButton": "Jetzt Beratung anfragen",
+    "footerSuffix": "Programm-Rahmenwerk Ökosystem."
+  }
+}

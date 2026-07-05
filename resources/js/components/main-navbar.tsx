@@ -10,6 +10,8 @@ type NavLink = {
   i18nKey?: string;
 };
 
+type Lang = { code: string; label: string };
+
 type Props = {
   navLinks: NavLink[];
   ctaLabel?: string;
@@ -27,9 +29,12 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
     setIsMenuOpen(false);
   };
 
-  const languages = [
+  const languages: Lang[] = [
     { code: 'en', label: 'EN' },
     { code: 'fr', label: 'FR' },
+    { code: 'de', label: 'DE' },
+    { code: 'it', label: 'IT' },
+    { code: 'pt', label: 'PT' },
   ];
 
   const currentLanguage = languages.find((lang) => lang.code === locale) ?? languages[0];
@@ -66,7 +71,7 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
                   <button
                     key={lang.code}
                     onClick={() => {
-                      setLocale(lang.code as 'en' | 'fr');
+                      setLocale(lang.code as 'en' | 'fr' | 'de' | 'it' | 'pt');
                       setIsLangOpen(false);
                     }}
                     className={`w-full text-left px-3 py-2 text-sm font-medium transition-colors ${
@@ -106,7 +111,7 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
                   <button
                     key={lang.code}
                     onClick={() => {
-                      setLocale(lang.code as 'en' | 'fr');
+                      setLocale(lang.code as 'en' | 'fr' | 'de' | 'it' | 'pt');
                       setIsLangOpen(false);
                     }}
                     className={`w-full text-left px-3 py-2 text-sm font-medium transition-colors ${

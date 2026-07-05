@@ -196,27 +196,13 @@ export default function WelcomePage() {
           <p className="mt-4 text-stone-600">{t('whyGhana.subhead')}</p>
         </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <Reveal className="space-y-6 text-stone-600 leading-relaxed text-base" delay={80}>
+        <div className="grid grid-cols-1 gap-8">
+          <Reveal className="space-y-6 text-stone-600 leading-relaxed text-base max-w-4xl">
             <p>{t('whyGhana.p1')}</p>
             <p>{t('whyGhana.p2')}</p>
             <p className="bg-stone-100 p-6 rounded-2xl border-l-4 border-emerald-700 text-stone-700 font-medium text-base">
               {t('whyGhana.highlight')}
             </p>
-          </Reveal>
-          <Reveal delay={200}>
-            <h3 className="text-lg font-bold text-stone-900 mb-4">{t('whyGhana.revenueTitle')}</h3>
-            <p className="text-stone-600 text-sm leading-relaxed mb-4">
-              {t('whyGhana.revenueIntro')}
-            </p>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-stone-700">
-              {t('whyGhana.revenueItems').map((item: string, i: number) => (
-                <li key={i} className="flex items-start space-x-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
           </Reveal>
         </div>
       </section>
@@ -338,8 +324,15 @@ export default function WelcomePage() {
       </section>
 
       {/* --- CONTACT SECTION --- */}
-      <section id="contact" className="py-24 bg-stone-50">
-        <Reveal className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="relative py-24 bg-stone-50 overflow-hidden">
+        <style>{`
+          @keyframes dotDrift {
+            0% { background-position: 0 0; }
+            100% { background-position: 24px 24px; }
+          }
+        `}</style>
+        <div className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{backgroundImage: 'radial-gradient(circle, #0f766e 1px, transparent 1px)', backgroundSize: '24px 24px', animation: 'dotDrift 6s linear infinite'}} />
+        <Reveal className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase block mb-2">{t('contact.kicker')}</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">{t('contact.title')}</h2>
