@@ -14,16 +14,7 @@
     "badge": "BRIDGEWAY International Exchange Hub",
     "title": "Estágios Internacionais e Programas de Intercâmbio em Gana",
     "subtitle": "Estágios médicos, técnicos e sociais certificados com suporte pessoal dinâmico no terreno em Gana. Conecte o desenvolvimento profissional com estruturas de trabalho globais seguras.",
-    "ctaApply": "Explorar",
-    "ctaDiscover": "Descobrir programas"
-  },
-  "heroWidget": {
-    "conceptLabel": "// Conceito de Negócio",
-    "conceptText": "BRIDGEWAY LLC é uma empresa dedicada a intercâmbios internacionais e imersão cultural, conectando indivíduos, instituições e profissionais com opções de desenvolvimento curadas em todo o Gana.",
-    "ecoTarget": "Ecossistema Alvo:",
-    "ecoValue": "Hub de Acra, Gana",
-    "focusPrimary": "Foco Principal:",
-    "focusValue": "Transferência de Competências & Crescimento"
+    "ctaApply": "Aplicar Explorar"
   },
   "about": {
     "kicker": "Sobre nós",
@@ -68,8 +59,8 @@
         "desc": "Conectando estudantes e instituições acadêmicas para aprendizagem global e transferência de créditos."
       },
       {
-        "title": "Programas de Intercâmbio na Saúde",
-        "desc": "Colocações médicas, rotações clínicas e transferência de conhecimento em hospitais regionais certificados."
+         "title": "Estágios Médicos",
+         "desc": "Colocações médicas, rotações clínicas e transferência de conhecimento em hospitais regionais certificados."
       },
       {
         "title": "Programas de Intercâmbio Agrícola",
@@ -84,12 +75,12 @@
         "desc": "Imersão cultural curada, passeios de patrimônio e experiências locais autênticas em todo o Gana."
       },
       {
-        "title": "Intercâmbio em Tecnologias da Informação",
-        "desc": "Colaboração de ecossistema tech, bootcamps, inovação digital e colocação em desenvolvimento de software."
+         "title": "Estágios Técnicos",
+         "desc": "Colaboração de ecossistema tech, bootcamps, inovação digital e colocação em desenvolvimento de software."
       },
       {
-        "title": "Intercâmbio Corporativo e Profissional",
-        "desc": "Estágios profissionais, estágios, networking executivo e programas de parceria corporativa."
+         "title": "Voluntariado",
+         "desc": "Estágios profissionais, estágios, networking executivo e programas de parceria corporativa."
       }
     ]
   },
@@ -167,6 +158,7 @@
     "interculturalDesc": "Experimente, aprenda e cresça por meio de integração comunitária deliberada, familiaridade linguística e profunda construção local de perspectivas.",
     "ctaTitle": "Pronto para encontrar o seu perfil?",
     "ctaText": "Conecte-se diretamente com um especialista para verificar o alinhamento de créditos do curso, janelas de inscrição e próximas coortes institucionais.",
+    "ctaButton": "Solicite Consulta Agora",
     "ctaButton": "Solicite Consulta Agora",
     "footerSuffix": "Ecossistema do Quadro do Programa."
   }

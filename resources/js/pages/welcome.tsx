@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Award,
   Building,
@@ -13,7 +13,9 @@ import {
   Cpu,
   Briefcase,
   CheckCircle,
-  Mail
+  Mail,
+  Globe,
+  ChevronRight
 } from 'lucide-react';
 import MainNavbar from '@/components/main-navbar';
 import MainFooter from '@/components/main-footer';
@@ -86,7 +88,30 @@ export default function WelcomePage() {
     return () => cancelAnimationFrame(id);
   }, []);
 
-  const [marqueePaused, setMarqueePaused] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slideRef = useRef<HTMLDivElement>(null);
+  const dragStart = useRef({ x: 0, y: 0 });
+  const dragging = useRef(false);
+
+  const handleStart = (x: number, y: number) => {
+    dragStart.current = { x, y };
+    dragging.current = true;
+  };
+
+  const handleMove = (x: number, y: number) => {
+    if (!dragging.current || !slideRef.current) return;
+    const dx = x - dragStart.current.x;
+    const dy = y - dragStart.current.y;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 5) {
+      if (dx < -30 && currentSlide < services.length - 1) setCurrentSlide((p) => p + 1);
+      if (dx > 30 && currentSlide > 0) setCurrentSlide((p) => p - 1);
+      dragging.current = false;
+    }
+  };
+
+  const handleEnd = () => {
+    dragging.current = false;
+  };
 
   const objectives = [
     t('objectives.items.0'),
@@ -109,7 +134,7 @@ export default function WelcomePage() {
   const navLinks = [
     { label: 'Home', href: '/', active: true, i18nKey: 'nav.home' },
     { label: 'About Us', href: '#about', i18nKey: 'nav.aboutUs' },
-    { label: 'Programs', href: '/explore', i18nKey: 'nav.programs' },
+    { label: 'Programs', href: '#explore', i18nKey: 'nav.programs' },
     { label: 'Why Ghana', href: '#why-ghana', i18nKey: 'nav.whyGhana' },
     { label: 'Application', href: '#', i18nKey: 'nav.application' },
     { label: 'Contact / FAQ', href: '#services', i18nKey: 'nav.contactFaq' },
@@ -156,12 +181,9 @@ export default function WelcomePage() {
             <p className="text-lg text-stone-100 max-w-xl mb-8 leading-relaxed">
               {t('hero.subtitle')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/explore" className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:-translate-y-0.5">
+            <div className="flex justify-center">
+              <Link href="#explore" className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:-translate-y-0.5">
                 {t('hero.ctaApply')}
-              </Link>
-              <Link href="/explore" className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5">
-                {t('hero.ctaDiscover')}
               </Link>
             </div>
           </div>
@@ -270,23 +292,46 @@ export default function WelcomePage() {
             <p className="mt-4 text-stone-600">{t('services.subtitle')}</p>
           </Reveal>
 
-          {/* Marquee on mobile, grid on md+ */}
-          <div className="md:hidden overflow-hidden -mx-4">
+          {/* Draggable carousel on mobile, grid on md+ */}
+          <div className="md:hidden select-none">
             <div
-              className={`marquee-track ${marqueePaused ? 'paused' : ''}`}
-              onClick={() => setMarqueePaused((p) => !p)}
+              ref={slideRef}
+              className="relative overflow-hidden touch-pan-y"
+              onMouseDown={(e) => handleStart(e.clientX, e.clientY)}
+              onMouseMove={(e) => handleMove(e.clientX, e.clientY)}
+              onMouseUp={handleEnd}
+              onMouseLeave={handleEnd}
+              onTouchStart={(e) => handleStart(e.touches[0].clientX, e.touches[0].clientY)}
+              onTouchMove={(e) => handleMove(e.touches[0].clientX, e.touches[0].clientY)}
+              onTouchEnd={handleEnd}
             >
-              {[...services, ...services].map((service, idx) => (
-                <div
-                  key={idx}
-                  className="w-[80vw] shrink-0 mx-3 bg-white p-6 rounded-2xl border border-stone-200"
-                >
-                  <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-5">
-                    {React.cloneElement(service.icon, { className: "w-6 h-6 text-emerald-700" })}
+              <div
+                className="flex transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {services.map((service, idx) => (
+                  <div key={idx} className="w-full shrink-0 px-4">
+                    <div className="w-full bg-white p-6 rounded-2xl border border-stone-200">
+                      <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-5">
+                        {React.cloneElement(service.icon, { className: "w-6 h-6 text-emerald-700" })}
+                      </div>
+                      <h4 className="text-lg font-bold text-stone-900 mb-2">{service.title}</h4>
+                      <p className="text-sm text-stone-500 leading-relaxed">{service.desc}</p>
+                    </div>
                   </div>
-                  <h4 className="text-lg font-bold text-stone-900 mb-2">{service.title}</h4>
-                  <p className="text-sm text-stone-500 leading-relaxed">{service.desc}</p>
-                </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex justify-center gap-2 mt-6">
+              {services.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    currentSlide === idx ? 'w-6 bg-emerald-600' : 'w-2.5 bg-stone-300'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
               ))}
             </div>
           </div>
@@ -309,15 +354,88 @@ export default function WelcomePage() {
         </div>
       </section>
 
+      {/* --- PROGRAMS / PATHWAY DIRECTORY --- */}
+      <section id="explore" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Reveal className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase block mb-2">{t('explore.kicker')}</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">{t('explore.title')}</h2>
+          <p className="mt-4 text-stone-600">{t('explore.subtitle')}</p>
+        </Reveal>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          <Reveal delay={100} className="bg-white p-8 rounded-3xl border border-stone-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-700">
+                  <HeartPulse className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-stone-900">{t('explore.medicalTitle')}</h3>
+              </div>
+              <p className="text-stone-600 mb-6 leading-relaxed">{t('explore.medicalDesc')}</p>
+              <span className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-3">{t('explore.medicalTracksLabel')}</span>
+              <ul className="space-y-3 mb-6">
+                {t('explore.medicalTracks').map((track: string, idx: number) => (
+                  <li key={idx} className="flex items-center text-stone-800 font-semibold"><ChevronRight className="w-4 h-4 mr-2 text-emerald-600" /> {track}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-stone-50 p-4 rounded-xl border border-stone-200/60 text-sm font-semibold text-emerald-800">
+              👉 {t('explore.medicalFocus')}
+            </div>
+          </Reveal>
+
+          <Reveal delay={200} className="bg-white p-8 rounded-3xl border border-stone-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-700">
+                  <Cpu className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-stone-900">{t('explore.techTitle')}</h3>
+              </div>
+              <p className="text-stone-600 mb-6 leading-relaxed">{t('explore.techDesc')}</p>
+              <span className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-3">{t('explore.techFieldsLabel')}</span>
+              <div className="grid grid-cols-2 gap-4 mb-6 text-sm text-stone-800 font-bold">
+                {t('explore.techFields').map((field: string, idx: number) => (
+                  <div key={idx} className="bg-stone-50 p-3 rounded-lg">• {field}</div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-stone-50 p-4 rounded-xl border border-stone-200/60 text-sm font-semibold text-amber-800">
+              👉 {t('explore.techFocus')}
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal delay={100} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-2xl border border-stone-200 flex items-start space-x-4">
+            <div className="p-3 bg-stone-100 rounded-xl text-stone-700 shrink-0"><Compass className="w-6 h-6"/></div>
+            <div>
+              <h3 className="font-bold text-stone-900 text-lg mb-1">{t('explore.volunteerTitle')}</h3>
+              <p className="text-stone-600 text-sm leading-relaxed">{t('explore.volunteerDesc')}</p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-stone-200 flex items-start space-x-4">
+            <div className="p-3 bg-stone-100 rounded-xl text-stone-700 shrink-0"><BookOpen className="w-6 h-6"/></div>
+            <div>
+              <h3 className="font-bold text-stone-900 text-lg mb-1">{t('explore.interculturalTitle')}</h3>
+              <p className="text-stone-600 text-sm leading-relaxed">{t('explore.interculturalDesc')}</p>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
       {/* --- WHY CHOOSE US / PERSPECTIVE ADVANTAGE --- */}
-      <section className="bg-stone-900 text-white py-20">
-        <Reveal className="max-w-5xl mx-auto px-4 text-center" as="div">
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/hero.jpg)' }} />
+        <div className="absolute inset-0 bg-black/60" />
+        <Reveal className="max-w-5xl mx-auto px-4 text-center relative z-10" as="div">
           <h2 className="text-xs font-bold text-amber-400 tracking-widest uppercase mb-3">{t('cta.beforeTitle')}</h2>
           <p className="text-2xl sm:text-3xl font-bold mb-6 text-white">{t('cta.heading')}</p>
-          <p className="text-stone-400 max-w-3xl mx-auto mb-10 leading-relaxed text-base sm:text-lg">
+          <p className="text-stone-200 max-w-3xl mx-auto mb-10 leading-relaxed text-base sm:text-lg">
             {t('cta.text')}
           </p>
-          <Link href="/explore" className="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
+          <Link href="#explore" className="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
             {t('cta.button')} <ArrowRight className="w-5 h-5 ml-2" />
           </Link>
         </Reveal>

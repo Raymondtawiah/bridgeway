@@ -14,17 +14,9 @@
     "badge": "Hub International d'Échanges de BRIDGEWAY",
     "title": "Stages Internationaux et Programmes D'échange au Ghana",
     "subtitle": "Stages médicaux, techniques et sociaux certifiés avec un soutien personnel dynamique sur le terrain au Ghana. Connectez le développement professionnel à des cadres de travail mondiaux sécurisés.",
-    "ctaApply": "Explorer",
-    "ctaDiscover": "Découvrir les programmes"
+    "ctaApply": "Postuler Explorer"
   },
-  "heroWidget": {
-    "conceptLabel": "// Concept d'Entreprise",
-    "conceptText": "BRIDGEWAY LLC est une entreprise dédiée aux échanges internationaux et à l'immersion culturelle, connectant des individus, des institutions et des professionnels avec des options de développement organisées à travers le Ghana.",
-    "ecoTarget": "Cible Écosystémique :",
-    "ecoValue": "Accra, Ghana",
-    "focusPrimary": "Focus Principal :",
-    "focusValue": "Transfert de Compétences & Croissance"
-  },
+
   "about": {
     "kicker": "À propos de nous",
     "headline": "BRIDGEWAY LLC",
@@ -82,8 +74,8 @@
         "desc": "Connexion des étudiants et institutions académiques pour un apprentissage mondial et des transferts de crédits."
       },
       {
-        "title": "Programmes d'Échange Médical",
-        "desc": "Places médicales, rotations cliniques et transfert de connaissances dans des hôpitaux régionaux certifiés."
+         "title": "Stages Médicaux",
+         "desc": "Places médicales, rotations cliniques et transfert de connaissances dans des hôpitaux régionaux certifiés."
       },
       {
         "title": "Programmes d'Échange Agricole",
@@ -98,12 +90,12 @@
         "desc": "Immersion culturelle organisée, visites du patrimoine et expériences locales authentiques à travers le Ghana."
       },
       {
-        "title": "Échange en Technologies de l'Information",
-        "desc": "Collaboration écosystème tech, bootcamps, innovation numérique et placements en développement logiciel."
+         "title": "Stages Techniques",
+         "desc": "Collaboration écosystème tech, bootcamps, innovation numérique et placements en développement logiciel."
       },
       {
-        "title": "Échange Corporatif et Professionnel",
-        "desc": "Attaches professionnelles, stages, réseautage exécutif et programmes de partenariat corporatif."
+         "title": "Volontariat",
+         "desc": "Attaches professionnelles, stages, réseautage exécutif et programmes de partenariat corporatif."
       }
     ]
   },

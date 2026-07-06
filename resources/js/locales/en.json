@@ -14,16 +14,7 @@
     "badge": "BRIDGEWAY International Exchange Hub",
     "title": "International Internships & Exchange Programs in Ghana",
     "subtitle": "Certified medical, technical, and social internships with dynamic personal support on the ground in Ghana. Connect professional development with safe, global work frameworks.",
-    "ctaApply": "Explore",
-    "ctaDiscover": "Discover programs"
-  },
-  "heroWidget": {
-    "conceptLabel": "// Business Concept",
-    "conceptText": "BRIDGEWAY LLC is a dedicated international exchange and cultural immersion company connecting individuals, institutions, and professionals with curated development options across Ghana.",
-    "ecoTarget": "Ecosystem Target:",
-    "ecoValue": "Accra, Ghana Hub",
-    "focusPrimary": "Primary Focus:",
-    "focusValue": "Skills Transfer & Growth"
+    "ctaApply": "Apply Explore"
   },
   "about": {
     "kicker": "About Us",
@@ -82,8 +73,8 @@
         "desc": "Connecting students and academic institutions for global learning and academic credit transfer."
       },
       {
-        "title": "Healthcare Exchange Programs",
-        "desc": "Medical placements, clinical rotations, and knowledge transfer in certified regional hospitals."
+         "title": "Medical Internship",
+         "desc": "Medical placements, clinical rotations, and knowledge transfer in certified regional hospitals."
       },
       {
         "title": "Agricultural Exchange Programs",
@@ -98,12 +89,12 @@
         "desc": "Curated cultural immersion, heritage tours, and authentic local experiences across Ghana."
       },
       {
-        "title": "Information Technology Exchange",
-        "desc": "Tech ecosystem collaboration, coding bootcamps, digital innovation, and software development placements."
+         "title": "Special Internship",
+         "desc": "Tech ecosystem collaboration, coding bootcamps, digital innovation, and software development placements."
       },
       {
-        "title": "Corporate and Professional Exchange",
-        "desc": "Professional attachments, internships, executive networking, and corporate partnership programs."
+         "title": "volunteerism",
+         "desc": "Professional attachments, internships, executive networking, and corporate partnership programs."
       }
     ]
   },
@@ -172,11 +163,11 @@
       "Nursing & Public Health",
       "Social Work",
       "Education / Pedagogy",
-      "Business & Admin"
+      "Business & Administration"
     ],
-    "techFocus": "Focus Priorities: Skills Transfer, Organizational Attachment, Systems Analysis.",
-    "volunteerTitle": "Volunteer Programs",
-    "volunteerDesc": "Active deployment and personal engagement in specialized localized social development projects with direct insight into local civil structures.",
+    "techFocus": "Priorities: Skills Transfer, Organizational Attachment, Systems Analysis.",
+    "volunteerTitle": "Volunteerism",
+    "volunteerDesc": "Active placement and personal engagement in specialized local social development projects with direct insight into local civil structures.",
     "interculturalTitle": "Intercultural Exchange",
     "interculturalDesc": "Experience, learn, and grow through deliberate community integration, language familiarity, and deep localized mutual perspective building.",
     "ctaTitle": "Ready to find your match?",
@@ -185,3 +176,4 @@
     "footerSuffix": "Program Framework Ecosystem."
   }
 }
+

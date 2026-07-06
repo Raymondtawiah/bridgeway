@@ -14,16 +14,7 @@
     "badge": "BRIDGEWAY International Exchange Hub",
     "title": "Stage Internazionali e Programmi di Scambio in Ghana",
     "subtitle": "Stage medici, tecnici e sociali certificati con supporto personale dinamico sul campo in Ghana. Connetti lo sviluppo professionale con framework di lavoro globali sicuri.",
-    "ctaApply": "Esplora",
-    "ctaDiscover": "Scopri i programmi"
-  },
-  "heroWidget": {
-    "conceptLabel": "// Concetto Aziendale",
-    "conceptText": "BRIDGEWAY LLC è una società dedicata agli scambi internazionali e all'immersione culturale che collega individui, istituzioni e professionisti con opzioni di sviluppo curate in tutto il Ghana.",
-    "ecoTarget": "Ecosistema Target:",
-    "ecoValue": "Hub di Accra, Ghana",
-    "focusPrimary": "Focus Principale:",
-    "focusValue": "Trasferimento di Competenze & Crescita"
+    "ctaApply": "Applica Esplora"
   },
   "about": {
     "kicker": "Chi siamo",
@@ -68,8 +59,8 @@
         "desc": "Collegare studenti e istituzioni accademiche per l'apprendimento globale e il trasferimento di crediti formativi."
       },
       {
-        "title": "Programmi di Scambio Sanitario",
-        "desc": "Placement medici, rotazioni cliniche e trasferimento di conoscenze in ospedali regionali certificati."
+         "title": "Stage Medici",
+         "desc": "Placement medici, rotazioni cliniche e trasferimento di conoscenze in ospedali regionali certificati."
       },
       {
         "title": "Programmi di Scambio Agricolo",
@@ -84,12 +75,12 @@
         "desc": "Immersione culturale curata, tour del patrimonio ed esperienze locali autentiche in tutto il Ghana."
       },
       {
-        "title": "Scambio di Tecnologie dell'Informazione",
-        "desc": "Collaborazione ecosistema tech, coding bootcamp, innovazione digitale e placement in sviluppo software."
+         "title": "Stage Tecnici",
+         "desc": "Collaborazione ecosistema tech, coding bootcamp, innovazione digitale e placement in sviluppo software."
       },
       {
-        "title": "Scambio Aziendale e Professionale",
-        "desc": "Tirocini professionali, tirocini, networking executive e programmi di partnership aziendale."
+         "title": "Volontariato",
+         "desc": "Tirocini professionali, tirocini, networking executive e programmi di partnership aziendale."
       }
     ]
   },

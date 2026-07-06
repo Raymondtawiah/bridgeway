@@ -137,6 +137,7 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
       {isMenuOpen && (
         <div className="md:hidden bg-white border-b border-stone-200 px-4 pt-2 pb-6 flex flex-col space-y-3 font-medium">
           {navLinks.map((link) => {
+            const translatedLabel = link.i18nKey ? t(link.i18nKey, link.label) : link.label;
             const isHash = link.href.includes('#');
             if (isHash) {
               return (
@@ -148,7 +149,7 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
                     link.active ? 'text-emerald-700 font-bold' : 'text-stone-700'
                   }`}
                 >
-                  {link.label}
+                  {translatedLabel}
                 </a>
               );
             }
@@ -162,7 +163,7 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
                   link.active ? 'text-emerald-700 font-bold' : 'text-stone-700'
                 }`}
               >
-                {link.label}
+                {translatedLabel}
               </Link>
             );
           })}

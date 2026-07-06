@@ -14,17 +14,9 @@
     "badge": "BRIDGEWAY International Exchange Hub",
     "title": "Internationale Praktika & Austauschprogramme in Ghana",
     "subtitle": "Zertifizierte medizinische, technische und soziale Praktika mit dynamischer persönlicher Unterstützung vor Ort in Ghana. Verbinden Sie berufliche Entwicklung mit sicheren, globalen Arbeitsrahmen.",
-    "ctaApply": "Erkunden",
-    "ctaDiscover": "Programme entdecken"
+    "ctaApply": "Bewerben Erkunden"
   },
-  "heroWidget": {
-    "conceptLabel": "// Geschäftskonzept",
-    "conceptText": "BRIDGEWAY LLC ist ein Dediziertes internationales Austausch- und Kulturaustauschunternehmen, das Einzelpersonen, Institutionen und Fachkräfte mit kuratierten Entwicklungsoptionen in ganz Ghana verbindet.",
-    "ecoTarget": "Zielökosystem:",
-    "ecoValue": "Accra, Ghana Hub",
-    "focusPrimary": "Primärer Fokus:",
-    "focusValue": "Kompetenztransfer & Wachstum"
-  },
+
   "about": {
     "kicker": "Über uns",
     "headline": "BRIDGEWAY LLC",
@@ -68,8 +60,8 @@
         "desc": "Verbindung von Studierenden und akademischen Institutionen für globales Lernen und Anrechnung von Leistungen."
       },
       {
-        "title": "Gesundheitsaustauschprogramme",
-        "desc": "Medizinische Platzierungen, klinische Rotationen und Wissenstransfer in zertifizierten Regionalkrankenhäusern."
+         "title": "Medizinische Praktika",
+         "desc": "Medizinische Platzierungen, klinische Rotationen und Wissenstransfer in zertifizierten Regionalkrankenhäusern."
       },
       {
         "title": "Agraraustauschprogramme",
@@ -84,12 +76,12 @@
         "desc": "Kuratierte kulturelle Immersion, Erbes-Touren und authentische lokale Erlebnisse in ganz Ghana."
       },
       {
-        "title": "Informationstechnologie-Austausch",
-        "desc": "Technologie-Ökosystem-Zusammenarbeit, Coding-Bootcamps, digitale Innovation und Softwareentwicklung-Platzierungen."
+         "title": "Technische Praktika",
+         "desc": "Technologie-Ökosystem-Zusammenarbeit, Coding-Bootcamps, digitale Innovation und Softwareentwicklung-Platzierungen."
       },
       {
-        "title": "Unternehmens- und Berufsaustausch",
-        "desc": "Berufspraktika, Praktika, Executive Networking und Kooperationsprogramme mit Unternehmen."
+         "title": "Freiwilligenarbeit",
+         "desc": "Berufspraktika, Praktika, Executive Networking und Kooperationsprogramme mit Unternehmen."
       }
     ]
   },
