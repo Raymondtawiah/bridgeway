@@ -44,7 +44,16 @@
       "Parrainages corporatifs",
       "Services de conseil",
       "Programmes d'immersion culturelle"
-    ]
+    ],
+    "touristKicker": "Attraction Touristique",
+    "touristTitle": "Parc National de Kakum",
+    "touristText": "Le parc national de Kakum est une forêt tropicale luxuriante de 375 kilomètres carrés dans la région centrale du Ghana, à environ 33 km au nord de Cape Coast. Célèbre pour sa passerelle suspendue de 330 mètres, il offre des vues suspendues à couper le souffle jusqu'à 40 mètres au-dessus du sol de la forêt et abrite une faune rare comme les éléphants de forêt, les singes Diana et les bongos.",
+    "tourist2Kicker": "Monument Historique",
+    "tourist2Title": "Parc Mémorial Kwame Nkrumah",
+    "tourist2Text": "Le parc mémorial Kwame Nkrumah est un monument national important et le lieu de repos final du premier président du Ghana et père fondateur, le Dr. Kwame Nkrumah. Situé sur l'historique terrain de polo britannique de 5,3 acres à Accra, l'endroit exact où l'indépendance a été déclarée en 1957, le site présente un impressionnant mausolée en marbre conçu pour représenter une épée renversée, symbolisant la paix dans la culture Akan.",
+    "tourist3Kicker": "Site Historique",
+    "tourist3Title": "Elmina",
+    "tourist3Text": "Elmina est une ville historique sur la côte sud du Ghana, à 12,2 km à l'ouest de Cape Coast. Fondée en 1482 par les Portugais, elle abrite le château Saint-Georges, la première et la plus ancienne structure européenne construite en Afrique subsaharienne. Aujourd'hui, c'est un site du patrimoine mondial de l'UNESCO connu pour son sombre histoire de traite transatlantique des esclaves, son port de pêche animé et sa culture locale dynamique."
   },
   "visionMission": {
     "visionTitle": "Notre Vision",
@@ -142,7 +151,23 @@
     "message": "Message",
     "send": "Envoyer le message",
     "successTitle": "Message envoyé",
-    "successMessage": "Merci de nous avoir contactés. Nous vous répondrons dans les 24 heures."
+    "successMessage": "Merci de nous avoir contactés. Nous vous répondrons dans les 24 heures.",
+    "faqKicker": "FAQ",
+    "faqTitle": "Questions Fréquentes",
+    "faqItems": [
+      {
+        "question": "Le stage est-il reconnu ?",
+        "answer": "Oui, nos programmes sont structurés et documentés."
+      },
+      {
+        "question": "Quelle est la sécurité au Ghana ?",
+        "answer": "Le Ghana est considéré comme l'un des pays les plus stables d'Afrique de l'Ouest."
+      },
+      {
+        "question": "Comment fonctionne l'organisation ?",
+        "answer": "Nous vous accompagnons de la candidature au retour."
+      }
+    ]
   },
   "explore": {
     "kicker": "Répertoire des Programmes",
@@ -175,5 +200,32 @@
     "ctaText": "Connectez-vous directement avec un spécialiste pour vérifier l'alignement des crédits de cours, les fenêtres de candidature et les cohortes institutionnelles à venir.",
     "ctaButton": "Demander une Consultation",
     "footerSuffix": "Écosystème de Cadre de Programmes."
+  },
+  "destinations": {
+    "kicker": "Destinations en Vedette",
+    "title": "Explorez le Ghana",
+    "subtitle": "Découvrez la beauté, l'histoire et la culture qui font du Ghana une destination parfaite pour votre parcours d'échange international."
+  },
+  "testimonials": {
+    "kicker": "Témoignages",
+    "title": "Ce que disent nos participants",
+    "subtitle": "Des expériences réelles de personnes ayant terminé leurs programmes d'échange avec BRIDGEWAY.",
+    "items": [
+      {
+        "name": "Sarah Johnson",
+        "role": "Stagiaire Médicale, Allemagne",
+        "text": "BRIDGEWAY a rendu mon stage médical au Ghana parfaitement fluide. Du placement à l'hôpital au soutien sur place, tout a été parfaitement organisé. J'ai acquis une expérience clinique inestimable et je suis tombée amoureuse de la culture ghanéenne."
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Stagiaire Tech, Canada",
+        "text": "Le stage technique a dépassé mes attentes. Travailler avec des équipes locales tout en explorant le Ghana a été une expérience qui a changé ma vie. L'équipe de BRIDGEWAY était toujours disponible et se souciait vraiment de mon expérience."
+      },
+      {
+        "name": "Aisha Patel",
+        "role": "Échange Culturel, UK",
+        "text": "Je suis venue pour un programme culturel de 6 semaines et je suis partie avec des amis à vie et une compréhension plus profonde de la collaboration mondiale. BRIDGEWAY relie vraiment les cultures. L'itinéraire était équilibré et immersif."
+      }
+    ]
   }
 }

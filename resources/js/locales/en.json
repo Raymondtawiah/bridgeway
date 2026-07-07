@@ -43,7 +43,16 @@
       "Corporate sponsorships",
       "Consultancy services",
       "Cultural immersion programs"
-    ]
+    ],
+    "touristKicker": "Tourist Attraction",
+    "touristTitle": "Kakum National Park",
+    "touristText": "Kakum National Park is a 375-square-kilometer lush tropical rainforest in Ghana's Central Region, located about 33 km north of Cape Coast. Famous for its 330-meter-long Canopy Walkway, it offers breathtaking, suspended views up to 40 meters above the forest floor and is home to rare wildlife like forest elephants, Diana monkeys, and bongos.",
+    "tourist2Kicker": "Historic Landmark",
+    "tourist2Title": "Kwame Nkrumah Memorial Park",
+    "tourist2Text": "The Kwame Nkrumah Memorial Park is a prominent national monument and the final resting place of Ghana's first President and founding father, Dr. Kwame Nkrumah. Located on the historic 5.3-acre former British polo grounds in Accra the exact spot where independence was declared in 1957 the site features a striking marble mausoleum designed to represent an upside-down sword, symbolizing peace in Akan culture.",
+    "tourist3Kicker": "Historic Site",
+    "tourist3Title": "Elmina",
+    "tourist3Text": "Elmina is a historic town on Ghana's southern coast, 12.2 km west of Cape Coast. Founded in 1482 by the Portuguese, it holds St. George's Castle, the first and oldest European structure built in sub-Saharan Africa. Today, it is a UNESCO World Heritage site known for its dark transatlantic slave trade history, bustling fishing harbor, and vibrant local culture."
   },
   "visionMission": {
     "visionTitle": "Our Vision",
@@ -130,6 +139,30 @@
   "footer": {
     "copyright": "All rights reserved. Connecting World Exchange Ecosystems."
   },
+  "stats": {
+    "kicker": "By the Numbers",
+    "title": "Impact at a Glance",
+    "subtitle": "Key metrics that reflect our commitment to quality, safety, and meaningful exchange outcomes.",
+    "programs": "Programs",
+    "partners": "Partners",
+    "satisfaction": "Satisfaction Rate",
+    "countries": "Countries",
+    "placements": "Placements",
+    "years": "Years",
+    "chartTitle": "Program Performance Overview",
+    "medical": "Medical Placements",
+    "technical": "Technical Placements",
+    "cultural": "Cultural Programs",
+    "agricultural": "Agricultural Programs",
+    "education": "Education Programs",
+    "volunteer": "Volunteer Programs",
+    "rate": "Completion Rate"
+  },
+  "destinations": {
+    "kicker": "Featured Destinations",
+    "title": "Explore Ghana",
+    "subtitle": "Discover the beauty, history, and culture that make Ghana a perfect destination for your international exchange journey."
+  },
   "contact": {
     "kicker": "Get in Touch",
     "title": "Contact Us",
@@ -141,7 +174,23 @@
     "message": "Message",
     "send": "Send Message",
     "successTitle": "Message Sent",
-    "successMessage": "Thank you for reaching out. We'll respond within 24 hours."
+    "successMessage": "Thank you for reaching out. We'll respond within 24 hours.",
+    "faqKicker": "FAQ",
+    "faqTitle": "Frequently Asked Questions",
+    "faqItems": [
+      {
+        "question": "Is the internship recognized?",
+        "answer": "Yes, our programs are structured and documented."
+      },
+      {
+        "question": "How safe is Ghana?",
+        "answer": "Ghana is considered one of the most stable countries in West Africa."
+      },
+      {
+        "question": "How does the organization work?",
+        "answer": "We support you from application to return."
+      }
+    ]
   },
   "explore": {
     "kicker": "Curriculum Directory",
@@ -174,6 +223,28 @@
     "ctaText": "Connect directly with a specialist to verify course credits alignment, application windows, and upcoming institutional cohorts.",
     "ctaButton": "Request Consultation Now",
     "footerSuffix": "Program Framework Ecosystem."
+  },
+  "testimonials": {
+    "kicker": "Testimonials",
+    "title": "What Our Participants Say",
+    "subtitle": "Real experiences from people who have completed their exchange programs with BRIDGEWAY.",
+    "items": [
+      {
+        "name": "Sarah Johnson",
+        "role": "Medical Intern, Germany",
+        "text": "BRIDGEWAY made my medical internship in Ghana seamless. From hospital placement to on-site support, everything was perfectly organized. I gained invaluable clinical experience and fell in love with Ghanaian culture."
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Tech Intern, Canada",
+        "text": "The tech placement exceeded my expectations. Working with local teams while exploring Ghana was a life-changing experience. BRIDGEWAY's team was always available and genuinely cared about my experience."
+      },
+      {
+        "name": "Aisha Patel",
+        "role": "Cultural Exchange, UK",
+        "text": "I came for a 6-week cultural program and left with lifelong friends and a deeper understanding of global collaboration. BRIDGEWAY truly bridges cultures. The itinerary was balanced and immersive."
+      }
+    ]
   }
 }
 

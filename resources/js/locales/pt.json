@@ -29,7 +29,16 @@
     "subhead": "Um centro vibrante para intercâmbios internacionais e crescimento profissional.",
     "p1": "O mundo está cada vez mais interconectado, criando uma demanda crescente por experiências internacionais, intercâmbio cultural, exposição profissional e oportunidades de networking global.",
     "p2": "O Gana, conhecido pela sua estabilidade política, rico patrimônio cultural, povo acolhedor, instituições educacionais, ecossistema tecnológico crescente e setor agrícola próspero, apresenta um destino único para programas de intercâmbio.",
-    "highlight": "BRIDGEWAY LLC busca capitalizar essa oportunidade posicionando-se como um hub de intercâmbio internacional completo que proporciona experiências abrangentes para indivíduos e organizações em todo o mundo."
+    "highlight": "BRIDGEWAY LLC busca capitalizar essa oportunidade posicionando-se como um hub de intercâmbio internacional completo que proporciona experiências abrangentes para indivíduos e organizações em todo o mundo.",
+    "touristKicker": "Atração Turística",
+    "touristTitle": "Parque Nacional de Kakum",
+    "touristText": "O Parque Nacional de Kakum é uma floresta tropical exuberante de 375 quilômetros quadrados na região central do Gana, localizada a cerca de 33 km ao norte de Cape Coast. Famoso por sua Passarela Suspensa de 330 metros, oferece vistas suspensas deslumbrantes de até 40 metros acima do chão da floresta e abriga vida selvagem rara como elefantes de floresta, macacos Diana e bongos.",
+    "tourist2Kicker": "Marco Histórico",
+    "tourist2Title": "Parque Memorial Kwame Nkrumah",
+    "tourist2Text": "O Parque Memorial Kwame Nkrumah é um importante monumento nacional e o local de descanso final do primeiro presidente do Gana e pai fundador, Dr. Kwame Nkrumah. Localizado no histórico terreno de polo britânico de 5,3 acres em Acra, o local exato onde a independência foi declarada em 1957, o parque apresenta um impressionante mausoléu de mármore projetado para representar uma espada invertida, simbolizando a paz na cultura Akan.",
+    "tourist3Kicker": "Sítio Histórico",
+    "tourist3Title": "Elmina",
+    "tourist3Text": "Elmina é uma cidade histórica na costa sul do Gana, a 12,2 km a oeste de Cape Coast. Fundada em 1482 pelos portugueses, abriga o Castelo de São Jorge, a primeira e mais antiga estrutura europeia construída na África subsariana. Hoje, é um local do Patrimônio Mundial da UNESCO conhecido por sua sombria história de comércio transatlântico de escravos, seu movimentado porto de pesca e sua vibrante cultura local."
   },
   "visionMission": {
     "visionTitle": "Nossa Visão",
@@ -127,7 +136,23 @@
     "message": "Mensagem",
     "send": "Enviar mensagem",
     "successTitle": "Mensagem enviada",
-    "successMessage": "Obrigado por entrar em contato. Responderemos dentro de 24 horas."
+    "successMessage": "Obrigado por entrar em contato. Responderemos dentro de 24 horas.",
+    "faqKicker": "FAQ",
+    "faqTitle": "Perguntas Frequentes",
+    "faqItems": [
+      {
+        "question": "O estágio é reconhecido?",
+        "answer": "Sim, nossos programas são estruturados e documentados."
+      },
+      {
+        "question": "Quão seguro é o Gana?",
+        "answer": "O Gana é considerado um dos países mais estáveis da África Ocidental."
+      },
+      {
+        "question": "Como funciona a organização?",
+        "answer": "Apoiamos você da candidatura ao retorno."
+      }
+    ]
   },
   "explore": {
     "kicker": "Diretório de Programas",

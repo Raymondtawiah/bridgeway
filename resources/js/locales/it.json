@@ -29,7 +29,16 @@
     "subhead": "Un hub vivace per scambi internazionali e crescita professionale.",
     "p1": "Il mondo è sempre più interconnesso, creando una domanda crescente di esperienze internazionali, scambio culturale, esposizione professionale e opportunità di networking globale.",
     "p2": "Il Ghana, noto per la sua stabilità politica, il ricco patrimonio culturale, il suo popolo accogliente, le istituzioni educative, l'ecosistema tecnologico in crescita e il settore agricolo fiorente, rappresenta una destinazione unica per i programmi di scambio.",
-    "highlight": "BRIDGEWAY LLC mira a sfruttare questa opportunità posizionandosi come un hub internazionale completo che fornisce esperienze di scambio complete per individui e organizzazioni in tutto il mondo."
+    "highlight": "BRIDGEWAY LLC mira a sfruttare questa opportunità posizionandosi come un hub internazionale completo che fornisce esperienze di scambio complete per individui e organizzazioni in tutto il mondo.",
+    "touristKicker": "Attrazione Turistica",
+    "touristTitle": "Parco Nazionale di Kakum",
+    "touristText": "Il Parco Nazionale di Kakum è una lussureggiante foresta pluviale tropicale di 375 chilometri quadrati nella regione centrale del Ghana, situata a circa 33 km a nord di Cape Coast. Famosa per la sua passerella sospesa lunga 330 metri, offre viste mozzafiato sospese fino a 40 metri sopra il pavimento della foresta e ospita fauna selvatica rara come elefanti di foresta, scimmie Diana e bongos.",
+    "tourist2Kicker": "Monumento Storico",
+    "tourist2Title": "Parco Memoriale Kwame Nkrumah",
+    "tourist2Text": "Il Parco Memoriale Kwame Nkrumah è un importante monumento nazionale e la ultima dimora del primo presidente del Ghana e padre fondatore, il Dr. Kwame Nkrumah. Situato sul storico terreno di polo britannico di 5,3 acri ad Accra, il punto esatto dove l'indipendenza è stata dichiarata nel 1957, il sito features un imponente mausoleo di marmo progettato per rappresentare una spada capovolta, che simboleggia la pace nella cultura Akan.",
+    "tourist3Kicker": "Sito Storico",
+    "tourist3Title": "Elmina",
+    "tourist3Text": "Elmina è una città storica sulla costa meridionale del Ghana, a 12,2 km a ovest di Cape Coast. Fondata nel 1482 dai Portoghesi, ospita il Castello di San Giorgio, la prima e più antica struttura europea costruita nell'Africa subsahariana. Oggi è un sito del patrimonio mondiale dell'UNESCO noto per la sua oscura storia di commercio transatlantico degli schiavi, il vivace porto di pesca e la vibrante cultura locale."
   },
   "visionMission": {
     "visionTitle": "La Nostra Visione",
@@ -127,7 +136,23 @@
     "message": "Messaggio",
     "send": "Invia messaggio",
     "successTitle": "Messaggio inviato",
-    "successMessage": "Grazie per averci contattato. Ti risponderemo entro 24 ore."
+    "successMessage": "Grazie per averci contattato. Ti risponderemo entro 24 ore.",
+    "faqKicker": "FAQ",
+    "faqTitle": "Domande Frequenti",
+    "faqItems": [
+      {
+        "question": "Lo stage è riconosciuto?",
+        "answer": "Sì, i nostri programmi sono strutturati e documentati."
+      },
+      {
+        "question": "Quanto è sicuro il Ghana?",
+        "answer": "Il Ghana è considerato uno dei paesi più stabili dell'Africa occidentale."
+      },
+      {
+        "question": "Come funziona l'organizzazione?",
+        "answer": "Ti supportiamo dalla candidatura al ritorno."
+      }
+    ]
   },
   "explore": {
     "kicker": "Catalogo dei Programmi",

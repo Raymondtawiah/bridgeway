@@ -1,27 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Award,
-  Building,
-  UserCheck,
-  ShieldCheck,
-  ArrowRight,
-  BookOpen,
-  HeartPulse,
-  Sprout,
-  Trophy,
-  Compass,
-  Cpu,
-  Briefcase,
   CheckCircle,
-  Mail,
-  Globe,
-  ChevronRight
+  Star
 } from 'lucide-react';
 import MainNavbar from '@/components/main-navbar';
 import MainFooter from '@/components/main-footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from '@inertiajs/react';
-import { useToast } from '@/components/toast';
 
 /* ────────────────────────────────────────────────────────────────
    Reveal: fades + slides a section/element up into place the first
@@ -32,7 +17,7 @@ type RevealProps = {
   children: React.ReactNode;
   className?: string;
   delay?: number;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
 };
 
 function Reveal({ children, className = '', delay = 0, as: Tag = 'div' }: RevealProps) {
@@ -77,6 +62,140 @@ function Reveal({ children, className = '', delay = 0, as: Tag = 'div' }: Reveal
   );
 }
 
+type BarData = {
+  label: string;
+  rate: number;
+  color?: string;
+};
+
+const BAR_COLORS = [
+  '#059669',
+  '#2563eb',
+  '#d97706',
+  '#7c3aed',
+  '#db2777',
+  '#0891b2'
+];
+
+function BarChart({ data }: { data: BarData[] }) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+  const [cols, setCols] = React.useState(3);
+
+  React.useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+
+    const width = rect.width;
+    const height = rect.height;
+
+    ctx.clearRect(0, 0, width, height);
+
+    const currentCols = width < 500 ? 2 : 3;
+    const rows = Math.ceil(data.length / currentCols);
+    const cellWidth = width / currentCols;
+    const cellHeight = height / rows;
+    const radius = Math.min(cellWidth, cellHeight) * 0.32;
+    const strokeWidth = Math.max(10, radius * 0.28);
+
+    data.forEach((item, idx) => {
+      const col = idx % currentCols;
+      const row = Math.floor(idx / currentCols);
+      const cx = cellWidth * col + cellWidth / 2;
+      const cy = cellHeight * row + cellHeight / 2;
+      const color = item.color || BAR_COLORS[idx % BAR_COLORS.length];
+      const rate = Math.min(Math.max(item.rate, 0), 100);
+      const angle = (rate / 100) * Math.PI * 2;
+
+      ctx.beginPath();
+      ctx.arc(cx, cy - 8, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = '#e7e5e4';
+      ctx.lineWidth = strokeWidth;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(cx, cy - 8, radius, -Math.PI / 2, -Math.PI / 2 + angle);
+      ctx.strokeStyle = color;
+      ctx.globalAlpha = hoveredIndex === idx ? 1 : 0.85;
+      ctx.lineWidth = strokeWidth;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      ctx.fillStyle = hoveredIndex === idx ? color : '#1c1917';
+      ctx.font = `bold ${radius * 0.6}px system-ui, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`${item.rate}%`, cx, cy - 8);
+
+      ctx.fillStyle = '#78716c';
+      ctx.font = 'bold 11px system-ui, sans-serif';
+      ctx.textBaseline = 'alphabetic';
+      const words = item.label.split(' ');
+      const line1 = words.slice(0, 2).join(' ');
+      const line2 = words.slice(2).join(' ');
+      ctx.fillText(line1, cx, cy + radius + 12);
+      if (line2) {
+        ctx.fillText(line2, cx, cy + radius + 26);
+      }
+    });
+  }, [data, hoveredIndex, cols]);
+
+  React.useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const updateCols = () => {
+      const rect = canvas.getBoundingClientRect();
+      setCols(rect.width < 500 ? 2 : 3);
+    };
+
+    updateCols();
+
+    const observer = new ResizeObserver(() => updateCols());
+    observer.observe(canvas);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="w-full" style={{ height: '420px' }}>
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full"
+        onMouseMove={(e) => {
+          const canvas = canvasRef.current;
+          if (!canvas) return;
+          const rect = canvas.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const currentCols = rect.width < 500 ? 2 : 3;
+          const cellWidth = rect.width / currentCols;
+          const cellHeight = rect.height / Math.ceil(data.length / currentCols);
+          const col = Math.floor(x / cellWidth);
+          const row = Math.floor(y / cellHeight);
+          const idx = row * currentCols + col;
+          if (idx >= 0 && idx < data.length) {
+            setHoveredIndex(idx);
+          } else {
+            setHoveredIndex(null);
+          }
+        }}
+        onMouseLeave={() => setHoveredIndex(null)}
+      />
+    </div>
+  );
+}
+
 export default function WelcomePage() {
   const { t } = useLanguage();
 
@@ -88,30 +207,82 @@ export default function WelcomePage() {
     return () => cancelAnimationFrame(id);
   }, []);
 
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slideRef = useRef<HTMLDivElement>(null);
-  const dragStart = useRef({ x: 0, y: 0 });
-  const dragging = useRef(false);
+  const [barsVisible, setBarsVisible] = useState(false);
+  const barsRef = useRef<HTMLDivElement | null>(null);
 
-  const handleStart = (x: number, y: number) => {
-    dragStart.current = { x, y };
-    dragging.current = true;
+  useEffect(() => {
+    const el = barsRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setBarsVisible(true);
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const [destSlide, setDestSlide] = useState(0);
+  const destSlideRef = useRef<HTMLDivElement | null>(null);
+  const destDragStart = useRef({ x: 0, y: 0 });
+  const destDragging = useRef(false);
+
+  const destHandleStart = (x: number, y: number) => {
+    destDragStart.current = { x, y };
+    destDragging.current = true;
   };
-
-  const handleMove = (x: number, y: number) => {
-    if (!dragging.current || !slideRef.current) return;
-    const dx = x - dragStart.current.x;
-    const dy = y - dragStart.current.y;
+  const destHandleMove = (x: number, y: number) => {
+    if (!destDragging.current || !destSlideRef.current) return;
+    const dx = x - destDragStart.current.x;
+    const dy = y - destDragStart.current.y;
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 5) {
-      if (dx < -30 && currentSlide < services.length - 1) setCurrentSlide((p) => p + 1);
-      if (dx > 30 && currentSlide > 0) setCurrentSlide((p) => p - 1);
-      dragging.current = false;
+      if (dx < -30 && destSlide < destinationImages.length - 1) setDestSlide((p) => p + 1);
+      if (dx > 30 && destSlide > 0) setDestSlide((p) => p - 1);
+      destDragging.current = false;
     }
   };
+  const destHandleEnd = () => { destDragging.current = false; };
 
-  const handleEnd = () => {
-    dragging.current = false;
+  const destinationImages = [
+    '/kakum1.png',
+    '/kakum2.jpg',
+    '/kakum3.jpg',
+    '/Nkrumah2.jpg',
+    '/Nkrumah3.jpg',
+    '/Elimina1.jpg',
+    '/Elimina2.jpg',
+    '/Elimina3.jpg'
+  ];
+
+  const [testSlide, setTestSlide] = useState(0);
+  const testSlideRef = useRef<HTMLDivElement | null>(null);
+  const testDragStart = useRef({ x: 0, y: 0 });
+  const testDragging = useRef(false);
+
+  const testHandleStart = (x: number, y: number) => {
+    testDragStart.current = { x, y };
+    testDragging.current = true;
   };
+  const testHandleMove = (x: number, y: number) => {
+    if (!testDragging.current || !testSlideRef.current) return;
+    const dx = x - testDragStart.current.x;
+    const dy = y - testDragStart.current.y;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 5) {
+      if (dx < -30 && testSlide < testimonialsData.length - 1) setTestSlide((p) => p + 1);
+      if (dx > 30 && testSlide > 0) setTestSlide((p) => p - 1);
+      testDragging.current = false;
+    }
+  };
+  const testHandleEnd = () => { testDragging.current = false; };
+
+  const testimonialsData = t('testimonials.items');
 
   const objectives = [
     t('objectives.items.0'),
@@ -121,30 +292,13 @@ export default function WelcomePage() {
     t('objectives.items.4'),
   ];
 
-  const services = [
-    { title: t('services.items.0.title'), icon: <BookOpen className="w-6 h-6 text-emerald-600" />, desc: t('services.items.0.desc') },
-    { title: t('services.items.1.title'), icon: <HeartPulse className="w-6 h-6 text-emerald-600" />, desc: t('services.items.1.desc') },
-    { title: t('services.items.2.title'), icon: <Sprout className="w-6 h-6 text-emerald-600" />, desc: t('services.items.2.desc') },
-    { title: t('services.items.3.title'), icon: <Trophy className="w-6 h-6 text-emerald-600" />, desc: t('services.items.3.desc') },
-    { title: t('services.items.4.title'), icon: <Compass className="w-6 h-6 text-emerald-600" />, desc: t('services.items.4.desc') },
-    { title: t('services.items.5.title'), icon: <Cpu className="w-6 h-6 text-emerald-600" />, desc: t('services.items.5.desc') },
-    { title: t('services.items.6.title'), icon: <Briefcase className="w-6 h-6 text-emerald-600" />, desc: t('services.items.6.desc') }
-  ];
-
   const navLinks = [
     { label: 'Home', href: '/', active: true, i18nKey: 'nav.home' },
-    { label: 'About Us', href: '#about', i18nKey: 'nav.aboutUs' },
-    { label: 'Programs', href: '#explore', i18nKey: 'nav.programs' },
-    { label: 'Why Ghana', href: '#why-ghana', i18nKey: 'nav.whyGhana' },
+    { label: 'About Us', href: '/about', i18nKey: 'nav.aboutUs' },
+    { label: 'Programs', href: '/program', i18nKey: 'nav.programs' },
+    { label: 'Why Ghana', href: '/why-ghana', i18nKey: 'nav.whyGhana' },
     { label: 'Application', href: '#', i18nKey: 'nav.application' },
-    { label: 'Contact / FAQ', href: '#services', i18nKey: 'nav.contactFaq' },
-  ];
-
-  const whyChooseItems = [
-    { title: t('whyChoose.items.0.title'), desc: t('whyChoose.items.0.desc'), icon: <Award className="w-6 h-6 text-emerald-700" /> },
-    { title: t('whyChoose.items.1.title'), desc: t('whyChoose.items.1.desc'), icon: <Building className="w-6 h-6 text-emerald-700" /> },
-    { title: t('whyChoose.items.2.title'), desc: t('whyChoose.items.2.desc'), icon: <UserCheck className="w-6 h-6 text-emerald-700" /> },
-    { title: t('whyChoose.items.3.title'), desc: t('whyChoose.items.3.desc'), icon: <ShieldCheck className="w-6 h-6 text-emerald-700" /> }
+    { label: 'Contact / FAQ', href: '/contact', i18nKey: 'nav.contactFaq' },
   ];
 
   return (
@@ -182,7 +336,7 @@ export default function WelcomePage() {
               {t('hero.subtitle')}
             </p>
             <div className="flex justify-center">
-              <Link href="#explore" className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:-translate-y-0.5">
+              <Link href="/program" className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:-translate-y-0.5">
                 {t('hero.ctaApply')}
               </Link>
             </div>
@@ -190,342 +344,216 @@ export default function WelcomePage() {
         </div>
       </section>
 
-      {/* --- ABOUT US / BUSINESS CONCEPT --- */}
-      <section id="about" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <Reveal className="lg:col-span-5">
-            <h2 className="text-xs font-bold text-emerald-700 tracking-widest uppercase mb-3">{t('about.kicker')}</h2>
-            <p className="text-3xl font-bold text-stone-900 tracking-tight mb-6">
-              {t('about.headline')}
-            </p>
-            <div className="h-1 w-20 bg-amber-500 rounded"></div>
-          </Reveal>
-          <Reveal className="lg:col-span-7 space-y-6 text-stone-600 leading-relaxed text-lg" delay={120}>
-            <p>{t('about.p1')}</p>
-            <p>{t('about.p2')}</p>
-            <p>{t('about.p3')}</p>
-          </Reveal>
-        </div>
-      </section>
-
-      <hr className="border-stone-200 max-w-7xl mx-auto" />
-
-      {/* --- WHY GHANA / COMPANY OVERVIEW --- */}
-      <section id="why-ghana" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-xs font-bold text-emerald-700 tracking-widest uppercase mb-3">{t('whyGhana.kicker')}</h2>
-          <p className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">{t('whyGhana.headline')}</p>
-          <p className="mt-4 text-stone-600">{t('whyGhana.subhead')}</p>
-        </Reveal>
-
-        <div className="grid grid-cols-1 gap-8">
-          <Reveal className="space-y-6 text-stone-600 leading-relaxed text-base max-w-4xl">
-            <p>{t('whyGhana.p1')}</p>
-            <p>{t('whyGhana.p2')}</p>
-            <p className="bg-stone-100 p-6 rounded-2xl border-l-4 border-emerald-700 text-stone-700 font-medium text-base">
-              {t('whyGhana.highlight')}
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <hr className="border-stone-200 max-w-7xl mx-auto" />
-
-      {/* --- VISION & MISSION --- */}
-      <section className="py-20 bg-stone-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Reveal className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm border border-stone-200/60">
-            <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6">
-              <span className="text-2xl">👁️‍🗨️</span>
-            </div>
-            <h3 className="text-2xl font-bold text-stone-900 mb-4">{t('visionMission.visionTitle')}</h3>
-            <p className="text-stone-600 leading-relaxed">
-              {t('visionMission.visionText')}
-            </p>
-          </Reveal>
-
-          <Reveal className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm border border-stone-200/60" delay={140}>
-            <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center mb-6">
-              <span className="text-2xl">🎯</span>
-            </div>
-            <h3 className="text-2xl font-bold text-stone-900 mb-4">{t('visionMission.missionTitle')}</h3>
-            <p className="text-stone-600 leading-relaxed">
-              {t('visionMission.missionText')}
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* --- CORE OBJECTIVES --- */}
-      <section id="objectives" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <Reveal className="lg:col-span-4">
-            <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase mb-3 block">{t('objectives.sectionKicker')}</span>
-            <h3 className="text-3xl font-bold tracking-tight text-stone-900 mb-4">{t('objectives.sectionTitle')}</h3>
-            <p className="text-stone-600 text-sm leading-relaxed">
-              {t('objectives.sectionIntro')}
-            </p>
-          </Reveal>
-          <div className="lg:col-span-8 space-y-4">
-            {objectives.map((objective, idx) => (
-              <Reveal
-                key={idx}
-                delay={idx * 90}
-                className="flex items-start bg-stone-50 border border-stone-200 p-5 rounded-2xl"
-              >
-                <CheckCircle className="w-6 h-6 text-emerald-600 shrink-0 mr-4 mt-0.5" />
-                <p className="text-stone-800 font-medium text-base sm:text-lg">{objective}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- PRODUCTS AND SERVICES --- */}
-      <section id="services" className="py-20 bg-stone-50">
+      {/* --- DESTINATIONS --- */}
+      <section className="py-24 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-xs font-bold text-emerald-700 tracking-widest uppercase mb-3">{t('services.kicker')}</h2>
-            <p className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">
-              {t('services.title')}
-            </p>
-            <p className="mt-4 text-stone-600">{t('services.subtitle')}</p>
+            <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase block mb-2">{t('destinations.kicker')}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">{t('destinations.title')}</h2>
+            <p className="mt-4 text-stone-600">{t('destinations.subtitle')}</p>
           </Reveal>
 
-          {/* Draggable carousel on mobile, grid on md+ */}
+          {/* Mobile swipeable carousel */}
           <div className="md:hidden select-none">
             <div
-              ref={slideRef}
+              ref={destSlideRef}
               className="relative overflow-hidden touch-pan-y"
-              onMouseDown={(e) => handleStart(e.clientX, e.clientY)}
-              onMouseMove={(e) => handleMove(e.clientX, e.clientY)}
-              onMouseUp={handleEnd}
-              onMouseLeave={handleEnd}
-              onTouchStart={(e) => handleStart(e.touches[0].clientX, e.touches[0].clientY)}
-              onTouchMove={(e) => handleMove(e.touches[0].clientX, e.touches[0].clientY)}
-              onTouchEnd={handleEnd}
+              onMouseDown={(e) => destHandleStart(e.clientX, e.clientY)}
+              onMouseMove={(e) => destHandleMove(e.clientX, e.clientY)}
+              onMouseUp={destHandleEnd}
+              onMouseLeave={destHandleEnd}
+              onTouchStart={(e) => destHandleStart(e.touches[0].clientX, e.touches[0].clientY)}
+              onTouchMove={(e) => destHandleMove(e.touches[0].clientX, e.touches[0].clientY)}
+              onTouchEnd={destHandleEnd}
             >
               <div
                 className="flex transition-transform duration-300 ease-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                style={{ transform: `translateX(-${destSlide * 100}%)` }}
               >
-                {services.map((service, idx) => (
-                  <div key={idx} className="w-full shrink-0 px-4">
-                    <div className="w-full bg-white p-6 rounded-2xl border border-stone-200">
-                      <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-5">
-                        {React.cloneElement(service.icon, { className: "w-6 h-6 text-emerald-700" })}
-                      </div>
-                      <h4 className="text-lg font-bold text-stone-900 mb-2">{service.title}</h4>
-                      <p className="text-sm text-stone-500 leading-relaxed">{service.desc}</p>
+                {destinationImages.map((src, idx) => (
+                  <div key={idx} className="w-full shrink-0 px-1">
+                    <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-sm aspect-square">
+                      <img
+                        src={src}
+                        alt={`Ghana destination ${idx + 1}`}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
                 ))}
               </div>
             </div>
             <div className="flex justify-center gap-2 mt-6">
-              {services.map((_, idx) => (
+              {destinationImages.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setCurrentSlide(idx)}
+                  onClick={() => setDestSlide(idx)}
                   className={`h-2.5 rounded-full transition-all ${
-                    currentSlide === idx ? 'w-6 bg-emerald-600' : 'w-2.5 bg-stone-300'
+                    destSlide === idx ? 'w-6 bg-emerald-600' : 'w-2.5 bg-stone-300'
                   }`}
-                  aria-label={`Go to slide ${idx + 1}`}
+                  aria-label={`Go to image ${idx + 1}`}
                 />
               ))}
             </div>
           </div>
 
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, idx) => (
-              <Reveal
-                key={idx}
-                delay={(idx % 3) * 100}
-                className="bg-white p-6 rounded-2xl border border-stone-200 hover:border-emerald-500/40 hover:shadow-xl hover:shadow-stone-200/50 transition-all group hover:-translate-y-1"
-              >
-                <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-emerald-700 group-hover:text-white transition-all">
-                  {React.cloneElement(service.icon, { className: "w-6 h-6 text-emerald-700 group-hover:text-white transition-colors" })}
-                </div>
-                <h4 className="text-lg font-bold text-stone-900 mb-2">{service.title}</h4>
-                <p className="text-sm text-stone-500 leading-relaxed">{service.desc}</p>
+          {/* Desktop grid */}
+          <div className="hidden md:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {destinationImages.map((src, idx) => (
+              <Reveal key={idx} delay={idx * 80} className="rounded-2xl overflow-hidden border border-stone-200 shadow-sm aspect-square">
+                <img
+                  src={src}
+                  alt={`Ghana destination ${idx + 1}`}
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                />
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* --- PROGRAMS / PATHWAY DIRECTORY --- */}
-      <section id="explore" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase block mb-2">{t('explore.kicker')}</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">{t('explore.title')}</h2>
-          <p className="mt-4 text-stone-600">{t('explore.subtitle')}</p>
-        </Reveal>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          <Reveal delay={100} className="bg-white p-8 rounded-3xl border border-stone-200 shadow-sm flex flex-col justify-between">
-            <div>
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-700">
-                  <HeartPulse className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-bold text-stone-900">{t('explore.medicalTitle')}</h3>
-              </div>
-              <p className="text-stone-600 mb-6 leading-relaxed">{t('explore.medicalDesc')}</p>
-              <span className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-3">{t('explore.medicalTracksLabel')}</span>
-              <ul className="space-y-3 mb-6">
-                {t('explore.medicalTracks').map((track: string, idx: number) => (
-                  <li key={idx} className="flex items-center text-stone-800 font-semibold"><ChevronRight className="w-4 h-4 mr-2 text-emerald-600" /> {track}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-stone-50 p-4 rounded-xl border border-stone-200/60 text-sm font-semibold text-emerald-800">
-              👉 {t('explore.medicalFocus')}
-            </div>
+      {/* --- STATS --- */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Reveal className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase block mb-2">{t('stats.kicker')}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">{t('stats.title')}</h2>
+            <p className="mt-4 text-stone-600">{t('stats.subtitle')}</p>
           </Reveal>
 
-          <Reveal delay={200} className="bg-white p-8 rounded-3xl border border-stone-200 shadow-sm flex flex-col justify-between">
-            <div>
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-700">
-                  <Cpu className="w-6 h-6" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { label: t('stats.programs'), value: 12, suffix: '+' },
+              { label: t('stats.partners'), value: 35, suffix: '+' },
+              { label: t('stats.satisfaction'), value: 98, suffix: '%' },
+              { label: t('stats.countries'), value: 18, suffix: '+' },
+            ].map((stat, idx) => (
+              <Reveal key={idx} delay={idx * 100} className="text-center">
+                <div className="text-4xl sm:text-5xl font-extrabold text-emerald-700 mb-2">
+                  {stat.value}{stat.suffix}
                 </div>
-                <h3 className="text-2xl font-bold text-stone-900">{t('explore.techTitle')}</h3>
-              </div>
-              <p className="text-stone-600 mb-6 leading-relaxed">{t('explore.techDesc')}</p>
-              <span className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-3">{t('explore.techFieldsLabel')}</span>
-              <div className="grid grid-cols-2 gap-4 mb-6 text-sm text-stone-800 font-bold">
-                {t('explore.techFields').map((field: string, idx: number) => (
-                  <div key={idx} className="bg-stone-50 p-3 rounded-lg">• {field}</div>
-                ))}
-              </div>
-            </div>
-            <div className="bg-stone-50 p-4 rounded-xl border border-stone-200/60 text-sm font-semibold text-amber-800">
-              👉 {t('explore.techFocus')}
-            </div>
+                <div className="text-sm font-semibold text-stone-500 uppercase tracking-wider">{stat.label}</div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* --- CANVAS BAR CHART --- */}
+          <Reveal className="mt-20 bg-stone-50 rounded-3xl border border-stone-200 p-6 sm:p-10">
+            <h3 className="text-xl sm:text-2xl font-bold text-stone-900 mb-2 text-center">{t('stats.chartTitle')}</h3>
+            <p className="text-sm text-stone-500 mb-8 text-center">{t('stats.rate')}</p>
+            <BarChart data={[
+              { label: t('stats.medical'), rate: 94, color: '#059669' },
+              { label: t('stats.technical'), rate: 91, color: '#2563eb' },
+              { label: t('stats.cultural'), rate: 97, color: '#d97706' },
+              { label: t('stats.agricultural'), rate: 88, color: '#7c3aed' },
+              { label: t('stats.education'), rate: 95, color: '#db2777' },
+              { label: t('stats.volunteer'), rate: 92, color: '#0891b2' }
+            ]} />
           </Reveal>
         </div>
+      </section>
 
-        <Reveal delay={100} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white p-6 rounded-2xl border border-stone-200 flex items-start space-x-4">
-            <div className="p-3 bg-stone-100 rounded-xl text-stone-700 shrink-0"><Compass className="w-6 h-6"/></div>
-            <div>
-              <h3 className="font-bold text-stone-900 text-lg mb-1">{t('explore.volunteerTitle')}</h3>
-              <p className="text-stone-600 text-sm leading-relaxed">{t('explore.volunteerDesc')}</p>
+      {/* --- TESTIMONIALS --- */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Reveal className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase block mb-2">{t('testimonials.kicker')}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">{t('testimonials.title')}</h2>
+            <p className="mt-4 text-stone-600">{t('testimonials.subtitle')}</p>
+          </Reveal>
+
+          {/* Mobile swipeable carousel */}
+          <div className="md:hidden select-none">
+            <div
+              ref={testSlideRef}
+              className="relative overflow-hidden touch-pan-y"
+              onMouseDown={(e) => testHandleStart(e.clientX, e.clientY)}
+              onMouseMove={(e) => testHandleMove(e.clientX, e.clientY)}
+              onMouseUp={testHandleEnd}
+              onMouseLeave={testHandleEnd}
+              onTouchStart={(e) => testHandleStart(e.touches[0].clientX, e.touches[0].clientY)}
+              onTouchMove={(e) => testHandleMove(e.touches[0].clientX, e.touches[0].clientY)}
+              onTouchEnd={testHandleEnd}
+            >
+              <div
+                className="flex transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(-${testSlide * 100}%)` }}
+              >
+                {testimonialsData.map((item: { name: string; role: string; text: string; initials?: string }, idx: number) => {
+                  const initials = (item as any).initials || item.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase();
+                  const avatarColors = ['bg-emerald-600', 'bg-blue-600', 'bg-amber-600'];
+                  const avatarColor = avatarColors[idx % avatarColors.length];
+                  return (
+                    <div key={idx} className="w-full shrink-0 px-1">
+                      <div className="bg-stone-50 p-6 rounded-3xl border border-stone-200 shadow-sm flex flex-col h-full">
+                        <div className="flex gap-1 text-amber-500 mb-4">
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <Star key={i} className="w-5 h-5 fill-current" />
+                          ))}
+                        </div>
+                        <p className="text-stone-700 leading-relaxed mb-6 flex-1">"{item.text}"</p>
+                        <div className="flex items-center gap-3">
+                          <div className={`w-10 h-10 rounded-full ${avatarColor} flex items-center justify-center text-white font-bold text-sm`}>
+                            {initials}
+                          </div>
+                          <div>
+                            <div className="font-bold text-stone-900 text-sm">{item.name}</div>
+                            <div className="text-xs text-stone-500">{item.role}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="flex justify-center gap-2 mt-6">
+              {testimonialsData.map((_: any, idx: number) => (
+                <button
+                  key={idx}
+                  onClick={() => setTestSlide(idx)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    testSlide === idx ? 'w-6 bg-emerald-600' : 'w-2.5 bg-stone-300'
+                  }`}
+                  aria-label={`Go to testimonial ${idx + 1}`}
+                />
+              ))}
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-stone-200 flex items-start space-x-4">
-            <div className="p-3 bg-stone-100 rounded-xl text-stone-700 shrink-0"><BookOpen className="w-6 h-6"/></div>
-            <div>
-              <h3 className="font-bold text-stone-900 text-lg mb-1">{t('explore.interculturalTitle')}</h3>
-              <p className="text-stone-600 text-sm leading-relaxed">{t('explore.interculturalDesc')}</p>
-            </div>
+          {/* Desktop grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonialsData.map((item: { name: string; role: string; text: string; initials?: string }, idx: number) => {
+              const initials = (item as any).initials || item.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase();
+              const avatarColors = ['bg-emerald-600', 'bg-blue-600', 'bg-amber-600'];
+              const avatarColor = avatarColors[idx % avatarColors.length];
+              return (
+                <Reveal key={idx} delay={idx * 120} className="bg-stone-50 p-8 rounded-3xl border border-stone-200 shadow-sm flex flex-col">
+                  <div className="flex gap-1 text-amber-500 mb-4">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="w-5 h-5 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-stone-700 leading-relaxed mb-6 flex-1">"{item.text}"</p>
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-full ${avatarColor} flex items-center justify-center text-white font-bold text-sm`}>
+                      {initials}
+                    </div>
+                    <div>
+                      <div className="font-bold text-stone-900 text-sm">{item.name}</div>
+                      <div className="text-xs text-stone-500">{item.role}</div>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
-        </Reveal>
-      </section>
-
-      {/* --- WHY CHOOSE US / PERSPECTIVE ADVANTAGE --- */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/hero.jpg)' }} />
-        <div className="absolute inset-0 bg-black/60" />
-        <Reveal className="max-w-5xl mx-auto px-4 text-center relative z-10" as="div">
-          <h2 className="text-xs font-bold text-amber-400 tracking-widest uppercase mb-3">{t('cta.beforeTitle')}</h2>
-          <p className="text-2xl sm:text-3xl font-bold mb-6 text-white">{t('cta.heading')}</p>
-          <p className="text-stone-200 max-w-3xl mx-auto mb-10 leading-relaxed text-base sm:text-lg">
-            {t('cta.text')}
-          </p>
-          <Link href="#explore" className="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
-            {t('cta.button')} <ArrowRight className="w-5 h-5 ml-2" />
-          </Link>
-        </Reveal>
-      </section>
-
-      {/* --- CONTACT SECTION --- */}
-      <section id="contact" className="relative py-24 bg-stone-50 overflow-hidden">
-        <style>{`
-          @keyframes dotDrift {
-            0% { background-position: 0 0; }
-            100% { background-position: 24px 24px; }
-          }
-        `}</style>
-        <div className="absolute inset-0 opacity-[0.35] pointer-events-none" style={{backgroundImage: 'radial-gradient(circle, #0f766e 1px, transparent 1px)', backgroundSize: '24px 24px', animation: 'dotDrift 6s linear infinite'}} />
-        <Reveal className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <span className="text-xs font-bold text-emerald-700 tracking-widest uppercase block mb-2">{t('contact.kicker')}</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">{t('contact.title')}</h2>
-            <p className="mt-4 text-stone-600">{t('contact.subtitle')}</p>
-          </div>
-
-          <ContactForm />
-        </Reveal>
+        </div>
       </section>
 
       <MainFooter />
-
     </div>
   );
 }
 
-function ContactForm() {
-  const { t } = useLanguage();
-  const { success } = useToast();
-
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  });
-  const [loading, setLoading] = useState(false);
-
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      success(t('contact.successMessage'), { title: t('contact.successTitle') });
-      setForm({ name: '', email: '', phone: '', subject: '', message: '' });
-    }, 1500);
-  };
-
-  const field =
-    'w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/40 outline-none transition';
-
-  return (
-    <form onSubmit={onSubmit} className="bg-white rounded-3xl border border-stone-200 p-6 sm:p-10 shadow-sm space-y-5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <label className="space-y-1">
-          <span className="text-xs font-semibold text-stone-600">{t('contact.name')}</span>
-          <input required className={field} placeholder={t('contact.name')} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} disabled={loading} />
-        </label>
-        <label className="space-y-1">
-          <span className="text-xs font-semibold text-stone-600">{t('contact.email')}</span>
-          <input required type="email" className={field} placeholder={t('contact.email')} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} disabled={loading} />
-        </label>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <label className="space-y-1">
-          <span className="text-xs font-semibold text-stone-600">{t('contact.phone')}</span>
-          <input className={field} placeholder={t('contact.phone')} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} disabled={loading} />
-        </label>
-        <label className="space-y-1">
-          <span className="text-xs font-semibold text-stone-600">{t('contact.subject')}</span>
-          <input required className={field} placeholder={t('contact.subject')} value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} disabled={loading} />
-        </label>
-      </div>
-
-      <label className="space-y-1">
-        <span className="text-xs font-semibold text-stone-600">{t('contact.message')}</span>
-        <textarea required rows={5} className={field} placeholder={t('contact.message')} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} disabled={loading} />
-      </label>
-
-      <button type="submit" className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-8 py-3.5 rounded-xl shadow-md transition-all" disabled={loading}>
-        {t('contact.send')}
-      </button>
-    </form>
-  );
-}
 
