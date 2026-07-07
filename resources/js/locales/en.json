@@ -6,7 +6,6 @@
     "aboutUs": "About Us",
     "programs": "Programs",
     "whyGhana": "Why Ghana",
-    "application": "Application",
     "contactFaq": "Contact / FAQ",
     "applyNow": "Apply Now"
   },
@@ -140,23 +139,23 @@
     "copyright": "All rights reserved. Connecting World Exchange Ecosystems."
   },
   "stats": {
-    "kicker": "By the Numbers",
-    "title": "Impact at a Glance",
-    "subtitle": "Key metrics that reflect our commitment to quality, safety, and meaningful exchange outcomes.",
+    "kicker": "Our Impact",
+    "title": "What We’ve Achieved Together",
+    "subtitle": "Numbers that show our reach, reliability, and the outcomes we deliver for participants and partners.",
     "programs": "Programs",
     "partners": "Partners",
     "satisfaction": "Satisfaction Rate",
     "countries": "Countries",
     "placements": "Placements",
     "years": "Years",
-    "chartTitle": "Program Performance Overview",
+    "chartTitle": "Program Success Rates",
     "medical": "Medical Placements",
     "technical": "Technical Placements",
     "cultural": "Cultural Programs",
     "agricultural": "Agricultural Programs",
     "education": "Education Programs",
     "volunteer": "Volunteer Programs",
-    "rate": "Completion Rate"
+    "rate": "Percentage of participants who successfully complete each program category"
   },
   "destinations": {
     "kicker": "Featured Destinations",

@@ -61,7 +61,6 @@ export default function AboutPage() {
     { label: 'About Us', href: '/about', active: true, i18nKey: 'nav.aboutUs' },
     { label: 'Programs', href: '/#explore', i18nKey: 'nav.programs' },
     { label: 'Why Ghana', href: '/why-ghana', i18nKey: 'nav.whyGhana' },
-    { label: 'Application', href: '#', i18nKey: 'nav.application' },
     { label: 'Contact / FAQ', href: '/contact', i18nKey: 'nav.contactFaq' },
   ];
 
