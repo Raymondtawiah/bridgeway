@@ -68,7 +68,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800 selection:bg-emerald-200">
       <MainNavbar
         navLinks={navLinks}
-        ctaLabel={t('nav.applyNow')}
+        ctaLabel={t('nav.applyNow') as string}
       />
 
       {/* --- HERO --- */}
@@ -107,14 +107,14 @@ export default function ContactPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <Reveal className="space-y-6">
-              {t('contact.faqItems').map((item: { question: string; answer: string }, idx: number) => (
+              {(t('contact.faqItems') as any[]).map((item: { question: string; answer: string }, idx: number) => (
                 <div key={idx} className="bg-stone-50 p-6 rounded-2xl">
                   <h3 className="text-lg font-bold text-stone-900 mb-2">{item.question}</h3>
                   <p className="text-stone-600 leading-relaxed">{item.answer}</p>
                 </div>
               ))}
             </Reveal>
-            <Reveal delay={120} className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm">
+            <Reveal delay={120} className="rounded-3xl overflow-hidden border border-stone-200 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300 ease-out">
               <img src="/faqs.jpg" alt="FAQ" className="w-full h-full object-cover" />
             </Reveal>
           </div>
@@ -158,7 +158,7 @@ function ContactForm() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      success(t('contact.successMessage'), { title: t('contact.successTitle') });
+      success(t('contact.successMessage') as string, { title: t('contact.successTitle') as string });
       setForm({ name: '', email: '', phone: '', subject: '', message: '' });
     }, 1500);
   };
@@ -168,50 +168,50 @@ function ContactForm() {
 
   return (
     <>
-      <form onSubmit={onSubmit} className="bg-white rounded-3xl border border-stone-200 p-6 sm:p-10 shadow-sm space-y-5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <label className="space-y-1">
-          <span className="text-xs font-semibold text-stone-600">{t('contact.name')}</span>
-          <input required className={field} placeholder={t('contact.name')} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} disabled={loading} />
-        </label>
-        <label className="space-y-1">
-          <span className="text-xs font-semibold text-stone-600">{t('contact.email')}</span>
-          <input required type="email" className={field} placeholder={t('contact.email')} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} disabled={loading} />
-        </label>
-      </div>
+       <form onSubmit={onSubmit} className="bg-white rounded-3xl border border-stone-200 p-6 sm:p-10 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300 ease-out space-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <label className="space-y-1">
+            <span className="text-xs font-semibold text-stone-600">{t('contact.name') as string}</span>
+            <input required className={field} placeholder={t('contact.name') as string} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} disabled={loading} />
+          </label>
+          <label className="space-y-1">
+            <span className="text-xs font-semibold text-stone-600">{t('contact.email') as string}</span>
+            <input required type="email" className={field} placeholder={t('contact.email') as string} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} disabled={loading} />
+          </label>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <label className="space-y-1">
-          <span className="text-xs font-semibold text-stone-600">{t('contact.phone')}</span>
-          <input className={field} placeholder={t('contact.phone')} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} disabled={loading} />
-        </label>
-        <label className="space-y-1">
-          <span className="text-xs font-semibold text-stone-600">{t('contact.subject')}</span>
-          <input required className={field} placeholder={t('contact.subject')} value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} disabled={loading} />
-        </label>
-      </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <label className="space-y-1">
+            <span className="text-xs font-semibold text-stone-600">{t('contact.phone') as string}</span>
+            <input className={field} placeholder={t('contact.phone') as string} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} disabled={loading} />
+          </label>
+          <label className="space-y-1">
+            <span className="text-xs font-semibold text-stone-600">{t('contact.subject') as string}</span>
+            <input required className={field} placeholder={t('contact.subject') as string} value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} disabled={loading} />
+          </label>
+        </div>
 
-      <label className="space-y-1">
-        <span className="text-xs font-semibold text-stone-600">{t('contact.message')}</span>
-        <textarea required rows={5} className={field} placeholder={t('contact.message')} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} disabled={loading} />
-      </label>
+        <label className="space-y-1">
+          <span className="text-xs font-semibold text-stone-600">{t('contact.message') as string}</span>
+          <textarea required rows={5} className={field} placeholder={t('contact.message') as string} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} disabled={loading} />
+        </label>
 
-      <button type="submit" className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-8 py-3.5 rounded-xl shadow-md transition-all" disabled={loading}>
-        {t('contact.send')}
-      </button>
-    </form>
+        <button type="submit" className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-8 py-3.5 rounded-xl shadow-md transition-all" disabled={loading}>
+          {t('contact.send') as string}
+        </button>
+      </form>
 
     <div className="mt-10 flex items-center justify-center gap-6">
-      <a href="#" aria-label="X" className="inline-flex items-center justify-center rounded-full bg-stone-100 p-2 text-stone-500 hover:bg-stone-200 transition-all hover:scale-90">
+      <a href="javascript:void(0)" aria-label="X" className="inline-flex items-center justify-center rounded-full bg-stone-100 p-2 text-stone-500 hover:bg-stone-200 transition-all hover:scale-90">
         <img src="/x_icon.webp" alt="X" className="w-6 h-6 object-contain" />
       </a>
-      <a href="#" aria-label="Instagram" className="inline-flex items-center justify-center rounded-full bg-stone-100 p-2 text-stone-500 hover:bg-stone-200 transition-all hover:scale-90">
+      <a href="javascript:void(0)" aria-label="Instagram" className="inline-flex items-center justify-center rounded-full bg-stone-100 p-2 text-stone-500 hover:bg-stone-200 transition-all hover:scale-90">
         <img src="/instagram.jpg" alt="Instagram" className="w-6 h-6 object-contain" />
       </a>
-      <a href="#" aria-label="Facebook" className="inline-flex items-center justify-center rounded-full bg-stone-100 p-2 text-stone-500 hover:bg-stone-200 transition-all hover:scale-90">
+      <a href="javascript:void(0)" aria-label="Facebook" className="inline-flex items-center justify-center rounded-full bg-stone-100 p-2 text-stone-500 hover:bg-stone-200 transition-all hover:scale-90">
         <img src="/facebook.webp" alt="Facebook" className="w-6 h-6 object-contain" />
       </a>
-      <a href="#" aria-label="TikTok" className="inline-flex items-center justify-center rounded-full bg-stone-100 p-2 text-stone-500 hover:bg-stone-200 transition-all hover:scale-90">
+      <a href="javascript:void(0)" aria-label="TikTok" className="inline-flex items-center justify-center rounded-full bg-stone-100 p-2 text-stone-500 hover:bg-stone-200 transition-all hover:scale-90">
         <img src="/tiktok.png" alt="TikTok" className="w-6 h-6 object-contain" />
       </a>
     </div>

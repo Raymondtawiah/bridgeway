@@ -25,7 +25,7 @@
   },
   "whyGhana": {
     "kicker": "Pourquoi Ghana",
-    "headline": "Présentation de l'Entreprise",
+    "headline": "Découvrez le Ghana",
     "subhead": "Un pôle dynamique pour les échanges internationaux et la croissance professionnelle.",
     "p1": "Le monde est de plus en plus interconnecté, créant une demande croissante d'expériences internationales, d'échanges culturels, d'exposition professionnelle et d'opportunités de réseautage mondial.",
     "p2": "Le Ghana, connu pour sa stabilité politique, son riche patrimoine culturel, son peuple accueillant, ses institutions éducatives, son écosystème technologique en croissance et son secteur agricole prospère, présente une destination unique pour les programmes d'échange.",
@@ -138,6 +138,25 @@
   },
   "footer": {
     "copyright": "Tous droits réservés. Connecter les Écosystèmes d'Échange Mondial."
+  },
+  "stats": {
+    "kicker": "Notre Impact",
+    "title": "Ce que nous avons accompli ensemble",
+    "subtitle": "Des chiffres qui montrent notre portée, notre fiabilité et les résultats que nous offrons aux participants et aux partenaires.",
+    "programs": "Programmes",
+    "partners": "Partenaires",
+    "satisfaction": "Taux de Satisfaction",
+    "countries": "Pays",
+    "placements": "Placements",
+    "years": "Années",
+    "chartTitle": "Taux de réussite des programmes",
+    "medical": "Placements Médicaux",
+    "technical": "Placements Techniques",
+    "cultural": "Programmes Culturels",
+    "agricultural": "Programmes Agricoles",
+    "education": "Programmes Éducatifs",
+    "volunteer": "Programmes de Bénévolat",
+    "rate": "Pourcentage de participants qui complètent avec succès chaque catégorie de programme"
   },
   "contact": {
     "kicker": "Contactez-nous",

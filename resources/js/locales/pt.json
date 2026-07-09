@@ -24,7 +24,7 @@
   },
   "whyGhana": {
     "kicker": "Por que Gana",
-    "headline": "Visão Geral da Empresa",
+    "headline": "Descubra o Gana",
     "subhead": "Um centro vibrante para intercâmbios internacionais e crescimento profissional.",
     "p1": "O mundo está cada vez mais interconectado, criando uma demanda crescente por experiências internacionais, intercâmbio cultural, exposição profissional e oportunidades de networking global.",
     "p2": "O Gana, conhecido pela sua estabilidade política, rico patrimônio cultural, povo acolhedor, instituições educacionais, ecossistema tecnológico crescente e setor agrícola próspero, apresenta um destino único para programas de intercâmbio.",
@@ -185,5 +185,51 @@
     "ctaButton": "Solicite Consulta Agora",
     "ctaButton": "Solicite Consulta Agora",
     "footerSuffix": "Ecossistema do Quadro do Programa."
+  },
+  "destinations": {
+    "kicker": "Destinos em Destaque",
+    "title": "Descubra o Gana",
+    "subtitle": "Descubra a beleza, a história e a cultura que tornam o Gana um destino perfeito para sua jornada de intercâmbio internacional."
+  },
+  "stats": {
+    "kicker": "Nosso Impacto",
+    "title": "O que alcançamos juntos",
+    "subtitle": "Números que mostram nosso alcance, confiabilidade e os resultados que entregamos para participantes e parceiros.",
+    "programs": "Programas",
+    "partners": "Parceiros",
+    "satisfaction": "Taxa de Satisfação",
+    "countries": "Países",
+    "placements": "Colocações",
+    "years": "Anos",
+    "chartTitle": "Taxas de sucesso dos programas",
+    "medical": "Colocações Médicas",
+    "technical": "Colocações Técnicas",
+    "cultural": "Programas Culturais",
+    "agricultural": "Programas Agrícolas",
+    "education": "Programas Educacionais",
+    "volunteer": "Programas de Voluntariado",
+    "rate": "Percentagem de participantes que completam com sucesso cada categoria de programa"
+  },
+  "testimonials": {
+    "kicker": "Depoimentos",
+    "title": "O que nossos participantes dizem",
+    "subtitle": "Experiências reais de pessoas que completaram seus programas de intercâmbio com BRIDGEWAY.",
+    "items": [
+      {
+        "name": "Sarah Johnson",
+        "role": "Estágio Médico, Alemanha",
+        "text": "BRIDGEWAY tornou meu estágio médico no Gana impecável. Desde o placement no hospital até o suporte no local, tudo foi perfeitamente organizado. Adquiri uma experiência clínica inestimável e me apaixonei pela cultura ganesa."
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Estágio Tech, Canadá",
+        "text": "O placement técnico superou minhas expectativas. Trabalhar com equipes locais enquanto explorava o Gana foi uma experiência que mudou minha vida. A equipe da BRIDGEWAY estava sempre disponível e realmente se importava com minha experiência."
+      },
+      {
+        "name": "Aisha Patel",
+        "role": "Intercâmbio Cultural, Reino Unido",
+        "text": "Vim para um programa cultural de 6 semanas e saí com amigos para a vida toda e uma compreensão mais profunda da colaboração global. BRIDGEWAY realmente conecta culturas. O itinerário foi equilibrado e imersivo."
+      }
+    ]
   }
 }

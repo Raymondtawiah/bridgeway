@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Link } from '@inertiajs/react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import MainNavbar from '@/components/main-navbar';
 import MainFooter from '@/components/main-footer';
@@ -113,7 +113,7 @@ export default function ProgramPage() {
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800 selection:bg-emerald-200">
       <MainNavbar
         navLinks={navLinks}
-        ctaLabel={t('nav.applyNow')}
+        ctaLabel={t('nav.applyNow') as string}
       />
 
       {/* --- HERO --- */}
@@ -235,7 +235,7 @@ export default function ProgramPage() {
               <p className="text-stone-600 mb-6 leading-relaxed">{t('explore.medicalDesc')}</p>
               <span className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-3">{t('explore.medicalTracksLabel')}</span>
               <ul className="space-y-3 mb-6">
-                {t('explore.medicalTracks').map((track: string, idx: number) => (
+                {(t('explore.medicalTracks') as string[]).map((track: string, idx: number) => (
                   <li key={idx} className="flex items-center text-stone-800 font-semibold"><ChevronRight className="w-4 h-4 mr-2 text-emerald-600" /> {track}</li>
                 ))}
               </ul>
@@ -256,7 +256,7 @@ export default function ProgramPage() {
               <p className="text-stone-600 mb-6 leading-relaxed">{t('explore.techDesc')}</p>
               <span className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-3">{t('explore.techFieldsLabel')}</span>
               <div className="grid grid-cols-2 gap-4 mb-6 text-sm text-stone-800 font-bold">
-                {t('explore.techFields').map((field: string, idx: number) => (
+                {(t('explore.techFields') as string[]).map((field: string, idx: number) => (
                   <div key={idx} className="bg-stone-50 p-3 rounded-lg">• {field}</div>
                 ))}
               </div>

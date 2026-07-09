@@ -6,7 +6,7 @@ import {
 import MainNavbar from '@/components/main-navbar';
 import MainFooter from '@/components/main-footer';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Link } from '@inertiajs/react';
+import { Link } from 'react-router-dom';
 
 /* ────────────────────────────────────────────────────────────────
    Reveal: fades + slides a section/element up into place the first
@@ -62,140 +62,6 @@ function Reveal({ children, className = '', delay = 0, as: Tag = 'div' }: Reveal
   );
 }
 
-type BarData = {
-  label: string;
-  rate: number;
-  color?: string;
-};
-
-const BAR_COLORS = [
-  '#059669',
-  '#2563eb',
-  '#d97706',
-  '#7c3aed',
-  '#db2777',
-  '#0891b2'
-];
-
-function BarChart({ data }: { data: BarData[] }) {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
-  const [cols, setCols] = React.useState(3);
-
-  React.useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    ctx.scale(dpr, dpr);
-
-    const width = rect.width;
-    const height = rect.height;
-
-    ctx.clearRect(0, 0, width, height);
-
-    const currentCols = width < 500 ? 2 : 3;
-    const rows = Math.ceil(data.length / currentCols);
-    const cellWidth = width / currentCols;
-    const cellHeight = height / rows;
-    const radius = Math.min(cellWidth, cellHeight) * 0.32;
-    const strokeWidth = Math.max(10, radius * 0.28);
-
-    data.forEach((item, idx) => {
-      const col = idx % currentCols;
-      const row = Math.floor(idx / currentCols);
-      const cx = cellWidth * col + cellWidth / 2;
-      const cy = cellHeight * row + cellHeight / 2;
-      const color = item.color || BAR_COLORS[idx % BAR_COLORS.length];
-      const rate = Math.min(Math.max(item.rate, 0), 100);
-      const angle = (rate / 100) * Math.PI * 2;
-
-      ctx.beginPath();
-      ctx.arc(cx, cy - 8, radius, 0, Math.PI * 2);
-      ctx.strokeStyle = '#e7e5e4';
-      ctx.lineWidth = strokeWidth;
-      ctx.lineCap = 'round';
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.arc(cx, cy - 8, radius, -Math.PI / 2, -Math.PI / 2 + angle);
-      ctx.strokeStyle = color;
-      ctx.globalAlpha = hoveredIndex === idx ? 1 : 0.85;
-      ctx.lineWidth = strokeWidth;
-      ctx.lineCap = 'round';
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-
-      ctx.fillStyle = hoveredIndex === idx ? color : '#1c1917';
-      ctx.font = `bold ${radius * 0.6}px system-ui, sans-serif`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(`${item.rate}%`, cx, cy - 8);
-
-      ctx.fillStyle = '#78716c';
-      ctx.font = 'bold 11px system-ui, sans-serif';
-      ctx.textBaseline = 'alphabetic';
-      const words = item.label.split(' ');
-      const line1 = words.slice(0, 2).join(' ');
-      const line2 = words.slice(2).join(' ');
-      ctx.fillText(line1, cx, cy + radius + 12);
-      if (line2) {
-        ctx.fillText(line2, cx, cy + radius + 26);
-      }
-    });
-  }, [data, hoveredIndex, cols]);
-
-  React.useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const updateCols = () => {
-      const rect = canvas.getBoundingClientRect();
-      setCols(rect.width < 500 ? 2 : 3);
-    };
-
-    updateCols();
-
-    const observer = new ResizeObserver(() => updateCols());
-    observer.observe(canvas);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div className="w-full" style={{ height: '420px' }}>
-      <canvas
-        ref={canvasRef}
-        className="w-full h-full"
-        onMouseMove={(e) => {
-          const canvas = canvasRef.current;
-          if (!canvas) return;
-          const rect = canvas.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const currentCols = rect.width < 500 ? 2 : 3;
-          const cellWidth = rect.width / currentCols;
-          const cellHeight = rect.height / Math.ceil(data.length / currentCols);
-          const col = Math.floor(x / cellWidth);
-          const row = Math.floor(y / cellHeight);
-          const idx = row * currentCols + col;
-          if (idx >= 0 && idx < data.length) {
-            setHoveredIndex(idx);
-          } else {
-            setHoveredIndex(null);
-          }
-        }}
-        onMouseLeave={() => setHoveredIndex(null)}
-      />
-    </div>
-  );
-}
-
 export default function WelcomePage() {
   const { t } = useLanguage();
 
@@ -205,28 +71,6 @@ export default function WelcomePage() {
   useEffect(() => {
     const id = requestAnimationFrame(() => setHeroIn(true));
     return () => cancelAnimationFrame(id);
-  }, []);
-
-  const [barsVisible, setBarsVisible] = useState(false);
-  const barsRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const el = barsRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setBarsVisible(true);
-            observer.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
   }, []);
 
   const [destSlide, setDestSlide] = useState(0);
@@ -282,7 +126,13 @@ export default function WelcomePage() {
   };
   const testHandleEnd = () => { testDragging.current = false; };
 
-  const testimonialsData = t('testimonials.items');
+  const testimonialsData = Array.isArray((t as any)('testimonials.items'))
+    ? (t as any)('testimonials.items')
+    : [
+        { name: 'Sarah Johnson', role: 'Medical Intern, Germany', text: 'BRIDGEWAY made my medical internship in Ghana seamless. From hospital placement to on-site support, everything was perfectly organized.' },
+        { name: 'Michael Chen', role: 'Tech Intern, Canada', text: 'The tech placement exceeded my expectations. Working with local teams while exploring Ghana was a life-changing experience.' },
+        { name: 'Aisha Patel', role: 'Cultural Exchange, UK', text: 'I came for a 6-week cultural program and left with lifelong friends and a deeper understanding of global collaboration.' }
+      ];
 
   const objectives = [
     t('objectives.items.0'),
@@ -305,7 +155,7 @@ export default function WelcomePage() {
 
       <MainNavbar
         navLinks={navLinks}
-        ctaLabel={t('nav.applyNow')}
+        ctaLabel={t('nav.applyNow') as string}
       />
 
       {/* --- HERO SECTION --- */}
@@ -335,7 +185,7 @@ export default function WelcomePage() {
               {t('hero.subtitle')}
             </p>
             <div className="flex justify-center">
-              <Link href="/program" className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:-translate-y-0.5">
+              <Link to="/program" className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:-translate-y-0.5">
                 {t('hero.ctaApply')}
               </Link>
             </div>
@@ -435,20 +285,6 @@ export default function WelcomePage() {
               </Reveal>
             ))}
           </div>
-
-          {/* --- CANVAS BAR CHART --- */}
-          <Reveal className="mt-20 bg-stone-50 rounded-3xl border border-stone-200 p-6 sm:p-10">
-            <h3 className="text-xl sm:text-2xl font-bold text-stone-900 mb-2 text-center">{t('stats.chartTitle')}</h3>
-            <p className="text-sm text-stone-500 mb-8 text-center">{t('stats.rate')}</p>
-            <BarChart data={[
-              { label: t('stats.medical'), rate: 94, color: '#059669' },
-              { label: t('stats.technical'), rate: 91, color: '#2563eb' },
-              { label: t('stats.cultural'), rate: 97, color: '#d97706' },
-              { label: t('stats.agricultural'), rate: 88, color: '#7c3aed' },
-              { label: t('stats.education'), rate: 95, color: '#db2777' },
-              { label: t('stats.volunteer'), rate: 92, color: '#0891b2' }
-            ]} />
-          </Reveal>
         </div>
       </section>
 

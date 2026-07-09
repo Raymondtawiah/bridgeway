@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Globe, Menu, X, ChevronDown } from 'lucide-react';
-import { Link } from '@inertiajs/react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 type NavLink = {
@@ -22,7 +22,12 @@ type Props = {
 export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { t, setLocale, locale } = useLanguage();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleNav = (href: string) => {
     window.location.hash = href;
@@ -39,19 +44,24 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
 
   const currentLanguage = languages.find((lang) => lang.code === locale) ?? languages[0];
 
+  const renderLabel = (label: string, i18nKey?: string) => {
+    if (!mounted) return label;
+    return i18nKey ? t(i18nKey, label) : label;
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <div className="flex items-center space-x-2">
-          <Globe className="w-8 h-8 text-emerald-700" />
+          <img src="/world.jpg" alt="BRIDGEWAY" className="w-8 h-8 object-contain rounded" />
           <span className="text-2xl font-black tracking-wider text-stone-900">
-            {t('brand')}<span className="text-amber-600">{t('brandSuffix')}</span>
+            {renderLabel(t('brand'), 'brand')}<span className="text-amber-600">{renderLabel(t('brandSuffix'), 'brandSuffix')}</span>
           </span>
         </div>
 
         <nav className="hidden md:flex items-center space-x-1 font-semibold text-sm uppercase tracking-wider">
           {navLinks.map((link) => (
-            <NavLinkItem key={link.label} link={link} t={t} activePage={activePage} />
+            <NavLinkItem key={link.label} link={link} t={t} activePage={activePage} mounted={mounted} />
           ))}
         </nav>
 
@@ -61,6 +71,7 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
               onClick={() => setIsLangOpen((prev) => !prev)}
               className="flex items-center space-x-1 text-xs font-bold uppercase tracking-widest text-stone-500 hover:text-emerald-700 transition-colors px-2 py-1 border border-stone-200 rounded"
             >
+              <img src="/world.jpg" alt="Language" className="w-4 h-4 object-contain rounded" />
               <span>{currentLanguage.label}</span>
               <ChevronDown className={`w-3 h-3 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -90,7 +101,7 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
               onClick={onCtaClick}
               className="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow-md transition-all"
             >
-              {ctaLabel}
+              {mounted ? ctaLabel : ctaLabel}
             </button>
           )}
         </div>
@@ -101,6 +112,7 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
               onClick={() => setIsLangOpen((prev) => !prev)}
               className="flex items-center space-x-1 text-xs font-bold uppercase tracking-widest text-stone-500 hover:text-emerald-700 transition-colors px-2 py-1 border border-stone-200 rounded"
             >
+              <img src="/world.jpg" alt="Language" className="w-4 h-4 object-contain rounded" />
               <span>{currentLanguage.label}</span>
               <ChevronDown className={`w-3 h-3 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -135,9 +147,9 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-b border-stone-200 px-4 pt-2 pb-6 flex flex-col space-y-3 font-medium">
+        <div className="md:hidden bg-white border-b border-stone-200 px-4 pt-4 pb-8 flex flex-col space-y-4 font-medium">
           {navLinks.map((link) => {
-            const translatedLabel = link.i18nKey ? t(link.i18nKey, link.label) : link.label;
+            const translatedLabel = renderLabel(link.i18nKey ? t(link.i18nKey, link.label) : link.label, link.i18nKey);
             const isHash = link.href.includes('#');
             if (isHash) {
               return (
@@ -145,7 +157,7 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
                   key={link.label}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`py-2 border-b border-stone-100 ${
+                  className={`py-3 border-b border-stone-100 ${
                     link.active ? 'text-emerald-700 font-bold' : 'text-stone-700'
                   }`}
                 >
@@ -157,9 +169,9 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
             return (
               <Link
                 key={link.label}
-                href={link.href}
+                to={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`py-2 border-b border-stone-100 ${
+                className={`py-3 border-b border-stone-100 ${
                   link.active ? 'text-emerald-700 font-bold' : 'text-stone-700'
                 }`}
               >
@@ -173,7 +185,7 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
                 setIsMenuOpen(false);
                 onCtaClick?.();
               }}
-              className="w-full bg-emerald-700 text-white py-2.5 rounded-full font-semibold"
+              className="w-full bg-emerald-700 text-white py-3.5 rounded-full font-semibold mt-2"
             >
               {ctaLabel}
             </button>
@@ -184,10 +196,10 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
   );
 }
 
-function NavLinkItem({ link, t, activePage }: { link: NavLink; t: (key: string, fallback?: string) => string; activePage?: string }) {
+function NavLinkItem({ link, t, activePage, mounted }: { link: NavLink; t: (key: string, fallback?: string) => string; activePage?: string; mounted?: boolean }) {
   const [isHovered, setIsHovered] = useState(false);
   const isActive = link.active || (activePage && link.href.includes(activePage));
-  const translatedLabel = link.i18nKey ? t(link.i18nKey, link.label) : link.label;
+  const translatedLabel = mounted && link.i18nKey ? t(link.i18nKey, link.label) : link.label;
   const isHash = link.href.startsWith('#');
 
   if (isHash) {
@@ -216,7 +228,7 @@ function NavLinkItem({ link, t, activePage }: { link: NavLink; t: (key: string, 
 
   return (
     <Link
-      href={link.href}
+      to={link.href}
       className={`relative px-3 py-2 transition-colors ${
         isActive ? 'text-emerald-700' : 'text-stone-600 hover:text-stone-900'
       }`}

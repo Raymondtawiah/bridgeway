@@ -25,7 +25,7 @@
   },
   "whyGhana": {
     "kicker": "Warum Ghana",
-    "headline": "Unternehmensübersicht",
+    "headline": "Entdecken Sie Ghana",
     "subhead": "Ein lebendiges Zentrum für internationalen Austausch und berufliches Wachstum.",
     "p1": "Die Welt ist zunehmend miteinander verbunden, was eine wachsende Nachfrage nach internationalen Erfahrungen, Kulturaustausch, beruflicher Entfaltung und globalen Networking-Möglichkeiten schafft.",
     "p2": "Ghana, bekannt für seine politische Stabilität, sein reiches kulturelles Erbe, sein gastfreundliches Volk, seine Bildungseinrichtungen, sein wachsendes Technologieökosystem und seinen blühenden Agrarsektor, bietet ein einzigartiges Ziel für Austauschprogramme.",
@@ -185,5 +185,51 @@
     "ctaText": "Setzen Sie sich direkt mit einem Spezialisten in Verbindung, um die Anerkennung von Studienleistungen, Bewerbungsfristen und kommende institutionelle Kohorten zu prüfen.",
     "ctaButton": "Jetzt Beratung anfragen",
     "footerSuffix": "Programm-Rahmenwerk Ökosystem."
+  },
+  "destinations": {
+    "kicker": "Empfohlene Reiseziele",
+    "title": "Entdecken Sie Ghana",
+    "subtitle": "Entdecken Sie die Schönheit, Geschichte und Kultur, die Ghana zu einem perfekten Ziel für Ihre internationale Austauschreise machen."
+  },
+  "stats": {
+    "kicker": "Unsere Wirkung",
+    "title": "Was wir gemeinsam erreicht haben",
+    "subtitle": "Zahlen, die unsere Reichweite, Zuverlässigkeit und die Ergebnisse zeigen, die wir für Teilnehmer und Partner liefern.",
+    "programs": "Programme",
+    "partners": "Partner",
+    "satisfaction": "Zufriedenheitsrate",
+    "countries": "Länder",
+    "placements": "Platzierungen",
+    "years": "Jahre",
+    "chartTitle": "Programmerfolgsquoten",
+    "medical": "Medizinische Platzierungen",
+    "technical": "Technische Platzierungen",
+    "cultural": "Kulturelle Programme",
+    "agricultural": "Landwirtschaftliche Programme",
+    "education": "Bildungsprogramme",
+    "volunteer": "Freiwilligenprogramme",
+    "rate": "Prozentsatz der Teilnehmer, die jede Programmkategorie erfolgreich absolvieren"
+  },
+  "testimonials": {
+    "kicker": "Erfahrungsberichte",
+    "title": "Was unsere Teilnehmer sagen",
+    "subtitle": "Echte Erfahrungen von Menschen, die ihre Austauschprogramme mit BRIDGEWAY abgeschlossen haben.",
+    "items": [
+      {
+        "name": "Sarah Johnson",
+        "role": "Medizinisches Praktikum, Deutschland",
+        "text": "BRIDGEWAY hat mein medizinisches Praktikum in Ghana nahtlos gemacht. Von der Krankenhausplatzierung bis zur Unterstützung vor Ort war alles perfekt organisiert. Ich habe unschätzbare klinische Erfahrungen gesammelt und die ghanaische Kultur lieben gelernt."
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Tech-Praktikum, Kanada",
+        "text": "Die Technologieplatzierung hat meine Erwartungen übertroffen. Die Arbeit mit lokalen Teams bei der Erkundung Ghanas war eine lebensverändernde Erfahrung. Das BRIDGEWAY-Team war immer verfügbar und kümmerte sich wirklich um meine Erfahrung."
+      },
+      {
+        "name": "Aisha Patel",
+        "role": "Kultureller Austausch, UK",
+        "text": "Ich kam für ein 6-wöchiges Kulturprogramm und ging mit lebenslangen Freunden und einem tieferen Verständnis für globale Zusammenarbeit. BRIDGEWAY verbindet wirklich Kulturen. Der Reiseplan war ausgewogen und immersiv."
+      }
+    ]
   }
 }

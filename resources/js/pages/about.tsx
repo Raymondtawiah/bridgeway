@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from '@inertiajs/react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import MainNavbar from '@/components/main-navbar';
 import MainFooter from '@/components/main-footer';
@@ -59,16 +59,16 @@ export default function AboutPage() {
   const navLinks = [
     { label: 'Home', href: '/', active: false, i18nKey: 'nav.home' },
     { label: 'About Us', href: '/about', active: true, i18nKey: 'nav.aboutUs' },
-    { label: 'Programs', href: '/#explore', i18nKey: 'nav.programs' },
+    { label: 'Programs', href: '/program', i18nKey: 'nav.programs' },
     { label: 'Why Ghana', href: '/why-ghana', i18nKey: 'nav.whyGhana' },
-    { label: 'Contact / FAQ', href: '/contact', i18nKey: 'nav.contactFaq' },
+    { label: 'Contact / FAQ', href: '/contact', active: false, i18nKey: 'nav.contactFaq' },
   ];
 
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800 selection:bg-emerald-200">
       <MainNavbar
         navLinks={navLinks}
-        ctaLabel={t('nav.applyNow')}
+        ctaLabel={t('nav.applyNow') as string}
       />
 
       {/* --- HERO --- */}

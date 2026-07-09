@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from '@inertiajs/react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import MainNavbar from '@/components/main-navbar';
 import MainFooter from '@/components/main-footer';
@@ -169,67 +169,145 @@ export default function WhyGhanaPage() {
     }
   };
 
-  const eliminaHandleEnd = () => {
-    eliminaDragging.current = false;
-  };
+   const eliminaHandleEnd = () => {
+     eliminaDragging.current = false;
+   };
 
-  const navLinks = [
-    { label: 'Home', href: '/', active: false, i18nKey: 'nav.home' },
-    { label: 'About Us', href: '/about', active: false, i18nKey: 'nav.aboutUs' },
-    { label: 'Programs', href: '/program', active: false, i18nKey: 'nav.programs' },
-    { label: 'Why Ghana', href: '/why-ghana', active: true, i18nKey: 'nav.whyGhana' },
-    { label: 'Contact / FAQ', href: '/contact', active: false, i18nKey: 'nav.contactFaq' },
-  ];
+   const heroImages = [
+     '/why_ghana.jpg',
+     '/why_ghana1.jpg',
+     '/why_ghana2.jpg',
+     '/why_ghana3.jpg'
+   ];
+
+   const [activeIdx, setActiveIdx] = useState(0);
+   const [fadeFrom, setFadeFrom] = useState<number | null>(null);
+   const [showFadeTo, setShowFadeTo] = useState(false);
+   const [renderKey, setRenderKey] = useState(0);
+   const isMounted = useRef(false);
+
+   useEffect(() => {
+     if (!isMounted.current) {
+       isMounted.current = true;
+       return;
+     }
+     if (fadeFrom === null) {
+       setRenderKey((k) => k + 1);
+     }
+   }, [fadeFrom, activeIdx]);
+
+   useEffect(() => {
+     const zoomTimer = setTimeout(() => {
+       const next = (activeIdx + 1) % heroImages.length;
+       setFadeFrom(activeIdx);
+       setShowFadeTo(false);
+       requestAnimationFrame(() => {
+         requestAnimationFrame(() => {
+           setShowFadeTo(true);
+         });
+       });
+     }, 5000);
+     return () => clearTimeout(zoomTimer);
+   }, [activeIdx, heroImages.length]);
+
+   useEffect(() => {
+     if (fadeFrom === null) return;
+     const fadeTimer = setTimeout(() => {
+       setActiveIdx((prev) => (prev + 1) % heroImages.length);
+       setFadeFrom(null);
+       setShowFadeTo(false);
+     }, 800);
+     return () => clearTimeout(fadeTimer);
+   }, [fadeFrom]);
+
+   const navLinks = [
+     { label: 'Home', href: '/', active: false, i18nKey: 'nav.home' },
+     { label: 'About Us', href: '/about', active: false, i18nKey: 'nav.aboutUs' },
+     { label: 'Programs', href: '/program', active: false, i18nKey: 'nav.programs' },
+     { label: 'Why Ghana', href: '/why-ghana', active: true, i18nKey: 'nav.whyGhana' },
+     { label: 'Contact / FAQ', href: '/contact', active: false, i18nKey: 'nav.contactFaq' },
+   ];
 
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-800 selection:bg-emerald-200">
       <MainNavbar
         navLinks={navLinks}
-        ctaLabel={t('nav.applyNow')}
+        ctaLabel={t('nav.applyNow') as string}
       />
 
       {/* --- HERO --- */}
-      <section className="relative overflow-hidden text-white py-24 lg:py-32">
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/hero.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <Reveal>
-            <span className="inline-block bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6">
-              {t('whyGhana.kicker')}
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
-              {t('whyGhana.headline')}
-            </h1>
-            <p className="text-lg text-stone-100 max-w-2xl leading-relaxed">
-              {t('whyGhana.subhead')}
-            </p>
-          </Reveal>
+      <section className="relative overflow-hidden text-white select-none h-[70vh] min-h-[500px] bg-black">
+        <style>{`
+          @keyframes heroZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+          }
+        `}</style>
+        <div className="absolute inset-0">
+          {heroImages.map((src, idx) => {
+            const isActive = activeIdx === idx && fadeFrom === null;
+            const isFadingOut = fadeFrom === idx;
+            const isFadingIn = fadeFrom !== null && (fadeFrom + 1) % heroImages.length === idx;
+
+            if (!isActive && !isFadingOut && !isFadingIn) return null;
+
+            return (
+              <div
+                key={`${idx}-${renderKey}`}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  isFadingOut
+                    ? 'opacity-0'
+                    : isFadingIn
+                    ? showFadeTo
+                      ? 'opacity-100'
+                      : 'opacity-0'
+                    : 'opacity-100'
+                }`}
+                style={isActive ? { animation: 'heroZoom 5s ease-out forwards' } : undefined}
+              >
+                <img
+                  src={src}
+                  alt={`Ghana ${idx + 1}`}
+                  className="w-full h-full object-cover"
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+            );
+          })}
         </div>
-      </section>
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 h-full flex flex-col justify-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <Reveal>
+              <span className="inline-block bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6">
+                {t('whyGhana.kicker')}
+              </span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                {t('whyGhana.headline')}
+              </h1>
+              <p className="text-lg text-stone-100 max-w-2xl leading-relaxed">
+                {t('whyGhana.subhead')}
+              </p>
+            </Reveal>
+          </div>
+        </div>
 
-      {/* --- WHY GHANA / COMPANY OVERVIEW --- */}
-      <section id="why-ghana" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-xs font-bold text-emerald-700 tracking-widest uppercase mb-3">{t('whyGhana.kicker')}</h2>
-          <p className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">{t('whyGhana.headline')}</p>
-          <p className="mt-4 text-stone-600">{t('whyGhana.subhead')}</p>
-        </Reveal>
-
-        <div className="grid grid-cols-1 gap-8">
-          <Reveal className="space-y-6 text-stone-600 leading-relaxed text-base max-w-4xl">
-            <p>{t('whyGhana.p1')}</p>
-            <p>{t('whyGhana.p2')}</p>
-            <p className="bg-stone-100 p-6 rounded-2xl border-l-4 border-emerald-700 text-stone-700 font-medium text-base">
-              {t('whyGhana.highlight')}
-            </p>
-          </Reveal>
+        {/* Hero dot indicators */}
+        <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20">
+          {heroImages.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                setActiveIdx(idx);
+                setFadeFrom(null);
+                setShowFadeTo(false);
+              }}
+              className={`h-2.5 rounded-full transition-all ${
+                activeIdx === idx && fadeFrom === null ? 'w-6 bg-emerald-400' : 'w-2.5 bg-white/60'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
       </section>
 
