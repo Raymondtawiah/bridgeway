@@ -14,6 +14,7 @@ import AboutPage from '@/pages/about';
 import ProgramPage from '@/pages/program';
 import ContactPage from '@/pages/contact';
 import WhyGhanaPage from '@/pages/why-ghana';
+import NavigationLoader from '@/components/navigation-loader';
 import { Routes, Route } from 'react-router-dom';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -44,6 +45,7 @@ if (container) {
       <ToastProvider>
         <TooltipProvider delayDuration={0}>
           <BrowserRouter>
+            <NavigationLoader />
             <Routes>
               <Route path="/" element={<PageLayout layout="welcome"><WelcomePage /></PageLayout>} />
               <Route path="/about" element={<PageLayout layout="about"><AboutPage /></PageLayout>} />

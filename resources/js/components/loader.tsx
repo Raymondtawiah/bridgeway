@@ -1,6 +1,16 @@
 export default function Loader() {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+    <div
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 99999,
+        background: 'white',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <div className="loader" />
     </div>
   );

@@ -50,8 +50,9 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <>
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <img src="/world.jpg" alt="BRIDGEWAY" className="w-8 h-8 object-contain rounded" />
           <span className="text-2xl font-black tracking-wider text-stone-900">
@@ -147,7 +148,8 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-b border-stone-200 px-4 pt-4 pb-8 flex flex-col space-y-4 font-medium">
+        <div className="md:hidden fixed inset-0 z-[9999] bg-black/50" onClick={() => setIsMenuOpen(false)}>
+          <div className="bg-white border-b border-stone-200 px-4 pt-4 pb-8 flex flex-col space-y-4 font-medium" onClick={(e) => e.stopPropagation()}>
           {navLinks.map((link) => {
             const translatedLabel = renderLabel(link.i18nKey ? t(link.i18nKey, link.label) : link.label, link.i18nKey);
             const isHash = link.href.includes('#');
@@ -191,8 +193,10 @@ export default function MainNavbar({ navLinks, ctaLabel, onCtaClick, activePage 
             </button>
           )}
         </div>
+      </div>
       )}
     </header>
+    </>
   );
 }
 

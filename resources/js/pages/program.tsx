@@ -110,7 +110,7 @@ export default function ProgramPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-stone-50 font-sans text-stone-800 selection:bg-emerald-200">
+    <div className="min-h-screen bg-stone-50 font-sans text-stone-800 selection:bg-emerald-200 overflow-x-hidden">
       <MainNavbar
         navLinks={navLinks}
         ctaLabel={t('nav.applyNow') as string}
